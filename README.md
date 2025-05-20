@@ -38,3 +38,26 @@ Navigating university life can be emotionally and academically overwhelming, esp
 
 ## 📁 Project Structure (Suggestion)
 
+
+---
+
+## 🔧 Getting Started
+
+### Prerequisites
+
+- Node.js and npm installed
+- Firebase CLI (optional)
+- Git installed
+
+### Setup Instructions
+
+```bash
+# Clone the repo
+git clone https://github.com/YOUR_USERNAME/EduSister.git
+cd EduSister
+
+# Install frontend dependencies
+npm install
+
+# Start the development server
+npm start
