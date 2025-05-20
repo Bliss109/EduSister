@@ -19,7 +19,6 @@ Navigating university life can be emotionally and academically overwhelming, esp
 
 - ✍️ **Mood Journaling** – Write and manage daily entries with emotional tags.
 - 📊 **Mood Analytics** – View visual trends of your mood over time.
-- 🤖 **AI Feedback** – Receive sentiment insights via OpenAI or Google NLP.
 - 🧑‍🤝‍🧑 **Peer Mentorship** – Match with a mentor or study partner.
 - 💬 **Anonymous Mode** – Share journal entries without revealing identity.
 - 🌈 **Motivational Dashboard** – Access curated quotes, stories, and tips.
