@@ -29,7 +29,7 @@ Navigating university life can be emotionally and academically overwhelming, esp
 
 | Layer          | Technologies Used                              |
 |----------------|------------------------------------------------|
-| **Frontend**   | React.js, HTML5, CSS3, Tailwind CSS            |
+| **Frontend**   | React.js, HTML5, CSS3,                         |
 | **Backend**    | Firebase (Authentication, Firestore, Hosting)  |          
 | **UI Design**  | Figma                                          |
 | **Versioning** | Git, GitHub                                    |
