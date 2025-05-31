@@ -129,6 +129,16 @@ h2 {
     padding: 1rem 0;
     color: var(--color-text-primary);
 }
+.main-content {
+  padding-top: 250px;
+
+  @media (max-width: 768px) {
+    padding-top: 500px; /* or whatever padding works for smaller screens */
+  }
+}
+
+
+/*Navbar section*/
 
 .navBar {
     position: fixed;
@@ -1031,3 +1041,223 @@ h2 {
         letter-spacing: 0.5rem;
     }
 }
+/* --- Mentor Section Container --- */
+.mentor-section {
+    padding: var(--spacing-xl) 0; /* Vertical padding for the section */
+    /* Subtle gradient background using root variables */
+    background: linear-gradient(180deg, var(--color-surface), rgba(var(--color-surface-rgb), 0.8));
+    backdrop-filter: blur(1px); /* Slight blur for a soft feel */
+    text-align: center; /* Center the title and grid */
+}
+
+.mentor-container { /* Re-using container concept for max-width and centering */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.mentor-section h2 {
+    font-size: 2.8rem; /* Large and impactful title */
+    color: var(--color-primary-dark);
+    margin-bottom: 10px; /* Space below the title */
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow for pop */
+    display: flex; /* Allow emoji and text to be on same line */
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm); /* Space between emoji and text */
+}
+.mentor-section p {
+    font-size: 0.9rem;
+    color: var(--color-text-primary); /* Use a soft text color */
+    max-width: 600px;
+    margin: 0 auto var(--spacing-lg); /* Center and give bottom space */
+    text-align: center;
+    line-height: 1.6;
+    font-weight: 400;
+    font-style: italic; /* Give it a gentle, storytelling tone */
+}
+
+
+/* --- Mentor Grid Layout --- */
+.mentor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: var(--spacing-lg); /* Gap between mentor cards */
+    justify-content: center; /* Center cards if they don't fill the row */
+    margin-top: var(--spacing-md); /* Space below section title */
+}
+
+/* --- Mentor Card Styling (MentorSpotlight component) --- */
+.mentor-card {
+    /* Soft glossy background using root variables */
+    background: linear-gradient(145deg, var(--color-white), rgba(var(--color-white-rgb), 0.9));
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    /* Layered shadows for depth and gloss using root variables */
+    box-shadow: var(--shadow-soft), /* Main shadow */
+                0 0 0 1px rgba(var(--color-white-rgb), 0.5) inset, /* Top-left 'light reflection' */
+                0 0 0 2px rgba(var(--color-white-rgb), 0.2) inset; /* Second inner highlight */
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Subtle light border using root variables */
+    border: 1px solid rgba(var(--color-white-rgb), 0.6);
+    cursor: pointer; /* Indicate interactivity */
+}
+
+.mentor-card:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: var(--shadow-medium), /* Stronger main shadow */
+                0 0 0 2px rgba(var(--color-white-rgb), 0.7) inset,
+                0 0 0 4px rgba(var(--color-white-rgb), 0.3) inset;
+}
+
+.mentor-card .mentor-emoji {
+    font-size: 3rem; /* Large emoji for visual impact */
+    margin-bottom: var(--spacing-md);
+    line-height: 1; /* Prevent extra space around emoji */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for emoji */
+}
+
+.mentor-card .mentor-name {
+    font-size: 1.6rem;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 700;
+}
+
+.mentor-card .mentor-title {
+    font-size: 0.95rem;
+    color: var(--color-secondary); /* Use secondary color for title */
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+    line-height: 1.3; /* Ensure multi-line titles are readable */
+}
+
+.mentor-card .mentor-quote {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+    /* Slightly translucent background for quote using root variables */
+    background: rgba(var(--color-white-rgb), 0.4);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+}
+
+.mentor-card .mentor-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-xs); /* Small gap between tags */
+    margin-top: auto; /* Push tags to the bottom if bio is shorter */
+}
+
+.mentor-card .mentor-tags span {
+    /* Gradient for tags using root variables */
+    background: linear-gradient(45deg, var(--color-primary-light), var(--color-secondary-light));
+    color: var(--color-white);
+    padding: 0.3rem var(--spacing-sm); /* Smaller padding for tags */
+    border-radius: var(--border-radius-md); /* Rounded pill shape */
+    font-size: 0.75rem;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent tags from breaking */
+    box-shadow: var(--shadow-soft); /* Soft shadow for tags */
+    transition: transform var(--transition-fast);
+}
+
+.mentor-card .mentor-tags span:hover {
+    transform: scale(1.05); /* Slight scale on tag hover */
+}
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 1024px) {
+    .mentor-section h2 {
+        font-size: 2.4rem;
+    }
+    .mentor-card {
+        padding: var(--spacing-md);
+    }
+    .mentor-card .mentor-emoji {
+        font-size: 2.5rem;
+    }
+    .mentor-card .mentor-name {
+        font-size: 1.4rem;
+    }
+    .mentor-card .mentor-title {
+        font-size: 0.9rem;
+    }
+    .mentor-card .mentor-quote {
+        font-size: 0.95rem;
+    }
+    .mentor-card .mentor-tags span {
+        font-size: 0.7rem;
+        padding: 0.25rem var(--spacing-sm);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mentor-section h2 {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-lg);
+    }
+    .mentor-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        max-width: 380px; /* Limit overall width for stacked cards */
+        margin: 0 auto; /* Center the stacked grid */
+    }
+    .mentor-card {
+        /* Simplify shadows for mobile using root variables */
+        box-shadow: var(--shadow-soft);
+        border: none; /* Remove light border */
+        background: var(--color-white); /* Simpler background */
+    }
+    .mentor-card:hover {
+        transform: none; /* Remove hover transform on mobile */
+        box-shadow: var(--shadow-medium);
+    }
+    .mentor-card .mentor-emoji {
+        font-size: 2.2rem;
+    }
+    .mentor-card .mentor-name {
+        font-size: 1.3rem;
+    }
+    .mentor-card .mentor-title {
+        font-size: 0.85rem;
+    }
+    .mentor-card .mentor-quote {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .mentor-section h2 {
+        font-size: 1.7rem;
+    }
+    .mentor-card {
+        padding: var(--spacing-sm);
+    }
+    .mentor-card .mentor-emoji {
+        font-size: 2rem;
+    }
+    .mentor-card .mentor-name {
+        font-size: 1.2rem;
+    }
+    .mentor-card .mentor-title {
+        font-size: 0.8rem;
+    }
+    .mentor-card .mentor-quote {
+        font-size: 0.85rem;
+    }
+    .mentor-card .mentor-tags span {
+        font-size: 0.65rem;
+        padding: 0.2rem var(--spacing-sm);
+    }
+}
+
+
