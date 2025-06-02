@@ -59,6 +59,12 @@ const MentorSection = () => {
           <MentorSpotlight key={index} {...mentor} />
         ))}
       </div>
+      {/* CTA Button Added Here */}
+      <div className="text-center">
+        <button className="mentorcta-btn">
+          Connect with a Mentor
+        </button>
+      </div>
     </div>
   )
 }
