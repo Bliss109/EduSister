@@ -1,3 +1,5 @@
+/* src/index.css or src/main.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Poppins:wght@500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
@@ -48,6 +50,25 @@
     --spacing-md: 1.0rem;
     --spacing-lg: 1.5rem;
     --spacing-xl: 2.5rem;
+
+  //More concise default styling
+  --primary-heading-color: #5b21b6; /* Deep Purple - for headings, main text */
+  --accent-light-color: #ede9fe; /* Very Light Lavender - for tags, subtle accents */
+  --section-background-color: #f7f0fd; /* Soft, slightly pinkish Lavender - for section backgrounds */
+  --card-background-color: #ffffff; /* White - for card backgrounds */
+  --button-main-color: #8b5cf6; /* Vibrant Purple - primary button color */
+  --button-hover-color: #7c3aed; /* Darker Purple - button hover state */
+  --button-active-color: #6d28d9; /* Even Darker Purple - button active (pressed) state */
+  --button-focus-ring-color: rgba(139, 92, 246, 0.5); /* Semi-transparent focus ring */
+
+  --text-dark-gray: #2d3748; /* For names, stronger text */
+  --text-medium-gray: #4a5568; /* For primary descriptions */
+  --text-light-gray: #718096; /* For secondary/italic text */
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Light shadow */
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06); /* Softer medium shadow */
+  --shadow-lg: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 6px 12px -5px rgba(0, 0, 0, 0.08); /* More diffused large shadow */
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08); /* Slightly stronger inner shadow */
 }
 
 //Default styling
@@ -591,7 +612,7 @@ h2 {
 }
 
 .header-text h1 {
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     font-weight: bold;
     color: var(--color-primary-dark);
     margin-bottom: var(--spacing-md);
@@ -1174,7 +1195,32 @@ h2 {
 .mentor-card .mentor-tags span:hover {
     transform: scale(1.05); /* Slight scale on tag hover */
 }
-
+.mentorcta-btn{
+  margin: 25px;
+  padding: 0.75rem 2rem; /* Equivalent to px-8 py-3 */
+  background-color: var(--color-primary); /* A shade of purple, equivalent to bg-purple-600 */
+  color: #ffffff; /* White text, equivalent to text-white */
+  font-weight: 700; /* Bold font, equivalent to font-bold */
+  border-radius: 9999px; /* Fully rounded, equivalent to rounded-full */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Equivalent to shadow-lg */
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Equivalent to transition duration-300 ease-in-out */
+  transform: translateY(0) scale(1); /* Base scale */
+  border: none; /* Remove default button border */
+  cursor: pointer; /* Indicate it's clickable */
+  outline: none; /* Remove outline on focus */
+}
+.mentorcta-btn:hover{
+    background-color: #8c4ac1; /* A slightly darker purple on hover, equivalent to hover:bg-purple-700 */
+  transform: scale(1.05); /* Slightly larger on hover, equivalent to hover:scale-105 */
+}
+.mentorcta-btn:focus{
+    box-shadow: 0 0 0 4px rgba(123, 63, 0, 0.5); 
+}
+.mentorcta-btn:active{
+    background-color: #6a3700; /* Slightly darker when pressed */
+  transform: translateY(2px) scale(0.98); /* Move down 2px and slightly shrink */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Smaller, more subtle shadow when pressed */
+}
 /* --- Responsive Adjustments --- */
 @media screen and (max-width: 1024px) {
     .mentor-section h2 {
@@ -1257,6 +1303,200 @@ h2 {
     .mentor-card .mentor-tags span {
         font-size: 0.65rem;
         padding: 0.2rem var(--spacing-sm);
+    }
+}
+/* --- Resources Section Specific Styles (Accordion) --- */
+/* --- Keyframes for Title Animation --- */
+@keyframes sparkle-glow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+}
+
+@keyframes emoji-pulse {
+    0% {
+        transform: scale(1) brightness(1);
+    }
+    50% {
+        transform: scale(1.05) brightness(1.1); /* Slightly larger and brighter */
+    }
+    100% {
+        transform: scale(1) brightness(1);
+    }
+}
+
+.resources-section {
+    background-color: var(--color-surface); /* Light background for the section */
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+}
+
+.resources-section h2 {
+    font-size: 2.5rem; /* Larger heading */
+    font-weight: 800;
+    text-align: center;
+    color: var(--color-primary-dark); /* Deeper purple for heading */
+    margin-bottom: var(--spacing-md);
+}
+
+.resources-section .intro-text {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto var(--spacing-xl); /* Center and add space below */
+}
+
+.accordion {
+    width: 100%; /* Take full width of its parent */
+    max-width: 800px; /* Limit accordion width for readability */
+    margin-left: 0; /* Align to the left */
+    margin-right: auto; /* Allow auto margin on right to push it left if max-width is less than parent */
+    border-radius: var(--border-radius-md); /* Overall rounded container */
+    overflow: hidden; /* Ensures shadows and borders are contained */
+    /* No shadow on the main accordion container, individual items have shadows */
+}
+
+.accordion-item {
+    background-color: var(--color-white); /* White box background */
+    border: 1px solid rgba(0, 0, 0, 0.07); /* Very subtle initial border */
+    margin-bottom: var(--spacing-sm); /* Space between items */
+    border-radius: var(--border-radius-md); /* Rounded corners for each box */
+    box-shadow: var(--shadow-sleek); /* Modern sleek shadow */
+    transition: var(--transition-subtle-lift); /* Subtle lift on hover/open */
+}
+
+.accordion-item:last-child {
+    margin-bottom: 0; /* No margin after the last item */
+}
+
+.accordion-item.open {
+    border-color: var(--color-primary-light); /* Border highlights when open */
+    box-shadow: var(--shadow-medium); /* Slightly more prominent shadow when open */
+    transform: translateY(-3px); /* Subtle lift when open */
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    background-color: var(--color-white); /* White background for header */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* Subtle separator inside the item */
+    transition: background-color var(--transition-fast);
+}
+
+.accordion-item.open .accordion-header {
+    background-color: var(--color-surface); /* Slightly lighter background when open */
+    border-bottom: none; /* No separator when open, as body content starts */
+}
+
+.accordion-header:hover {
+    background-color: rgba(var(--color-primary-light), 0.03); /* Very subtle purple tint on hover */
+}
+
+.accordion-header span:first-child { /* Emoji */
+    font-size: 1.5rem; /* Reduced emoji size */
+    margin-right: var(--spacing-md);
+    line-height: 1; /* Prevent extra space around emoji */
+}
+
+.accordion-header h3 {
+    flex-grow: 1; /* Takes up available space */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary); /* Primary purple for title */
+    margin: 0;
+}
+
+.accordion-header .arrow {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-primary); /* Primary purple for arrow */
+    transition: transform var(--transition-normal);
+}
+
+.accordion-item.open .accordion-header .arrow {
+    transform: rotate(180deg); /* Rotate arrow when open */
+}
+
+.accordion-body {
+    padding: var(--spacing-lg);
+    padding-top: 0; /* No padding at top as header has it */
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.accordion-body p {
+    font-size: 0.9rem;
+    margin-top: 0;
+    margin-bottom: var(--spacing-md);
+}
+
+.accordion-body a {
+    display: inline-block;
+    background-color: var(--color-secondary); /* Hot pink for CTA button */
+    color: var(--color-white);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-lg); /* More rounded button */
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.accordion-body a:hover {
+    background-color: var(--color-secondary-light); /* Lighter pink on hover */
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.accordion-body a:active {
+    background-color: var(--color-secondary-light); /* Even lighter on active */
+    transform: translateY(0);
+    box-shadow: var(--shadow-soft);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .resources-section h2 {
+        font-size: 2rem;
+    }
+    .accordion-header {
+        padding: var(--spacing-md);
+    }
+    .accordion-header span:first-child {
+        font-size: 1.3rem; /* Further reduce emoji on small screens */
+    }
+    .accordion-header h3 {
+        font-size: 1.1rem;
+    }
+    .accordion-body {
+        font-size: 0.9rem;
+        padding: var(--spacing-md);
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .resources-section h2 {
+        font-size: 1.8rem;
+    }
+    .resources-section .intro-text {
+        font-size: 1rem;
+    }
+    .accordion-header {
+        padding: var(--spacing-sm);
+    }
+    .accordion-header span:first-child {
+        font-size: 1.2rem; /* Smallest emoji on very small screens */
+    }
+    .accordion-header h3 {
+        font-size: 1rem;
     }
 }
 
