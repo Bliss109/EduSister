@@ -50,25 +50,55 @@
     --spacing-md: 1.0rem;
     --spacing-lg: 1.5rem;
     --spacing-xl: 2.5rem;
+    --spacing-xxl: 5rem;
+    /* 80px */
+    --spacing-xxxl: 7.5rem;
+    /* 120px - Even larger spacing */
 
-  //More concise default styling
-  --primary-heading-color: #5b21b6; /* Deep Purple - for headings, main text */
-  --accent-light-color: #ede9fe; /* Very Light Lavender - for tags, subtle accents */
-  --section-background-color: #f7f0fd; /* Soft, slightly pinkish Lavender - for section backgrounds */
-  --card-background-color: #ffffff; /* White - for card backgrounds */
-  --button-main-color: #8b5cf6; /* Vibrant Purple - primary button color */
-  --button-hover-color: #7c3aed; /* Darker Purple - button hover state */
-  --button-active-color: #6d28d9; /* Even Darker Purple - button active (pressed) state */
-  --button-focus-ring-color: rgba(139, 92, 246, 0.5); /* Semi-transparent focus ring */
+    //More concise default styling
+    --primary-heading-color: #5b21b6;
+    /* Deep Purple - for headings, main text */
+    --accent-light-color: #ede9fe;
+    /* Very Light Lavender - for tags, subtle accents */
+    --section-background-color: #f7f0fd;
+    /* Soft, slightly pinkish Lavender - for section backgrounds */
+    --card-background-color: #ffffff;
+    /* White - for card backgrounds */
+    --button-main-color: #8b5cf6;
+    /* Vibrant Purple - primary button color */
+    --button-hover-color: #7c3aed;
+    /* Darker Purple - button hover state */
+    --button-active-color: #6d28d9;
+    /* Even Darker Purple - button active (pressed) state */
+    --button-focus-ring-color: rgba(139, 92, 246, 0.5);
+    /* Semi-transparent focus ring */
 
-  --text-dark-gray: #2d3748; /* For names, stronger text */
-  --text-medium-gray: #4a5568; /* For primary descriptions */
-  --text-light-gray: #718096; /* For secondary/italic text */
+    --text-dark-gray: #2d3748;
+    /* For names, stronger text */
+    --text-medium-gray: #4a5568;
+    /* For primary descriptions */
+    --text-light-gray: #718096;
+    /* For secondary/italic text */
 
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Light shadow */
-  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06); /* Softer medium shadow */
-  --shadow-lg: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 6px 12px -5px rgba(0, 0, 0, 0.08); /* More diffused large shadow */
-  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08); /* Slightly stronger inner shadow */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* Light shadow */
+    --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06);
+    /* Softer medium shadow */
+    --shadow-lg: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 6px 12px -5px rgba(0, 0, 0, 0.08);
+    /* More diffused large shadow */
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    /* Slightly stronger inner shadow */
+
+    --color-footer-bg: #2c2c2c;
+    /* Dark charcoal gray for footer background */
+    --color-footer-text: #e0e0e0;
+    /* Light gray for general footer text */
+    --color-footer-heading: var(--color-white);
+    /* White for footer section headings */
+    --color-footer-link: #cccccc;
+    /* Slightly darker light gray for links */
+    --color-footer-link-hover: var(--color-secondary);
+    /* Pink for link hover */
 }
 
 //Default styling
@@ -150,12 +180,14 @@ h2 {
     padding: 1rem 0;
     color: var(--color-text-primary);
 }
-.main-content {
-  padding-top: 250px;
 
-  @media (max-width: 768px) {
-    padding-top: 500px; /* or whatever padding works for smaller screens */
-  }
+.main-content {
+    padding-top: 250px;
+
+    @media (max-width: 768px) {
+        padding-top: 500px;
+        /* or whatever padding works for smaller screens */
+    }
 }
 
 
@@ -761,42 +793,50 @@ h2 {
         transform: translateY(0);
     }
 }
+
 /* Responsive Adjustments for Option 1 */
 @media screen and (max-width: 768px) {
     .header {
-        padding-top: 40px; /* Adjust horizontal padding for smaller screens */
+        padding-top: 40px;
+        /* Adjust horizontal padding for smaller screens */
     }
 }
 
 @media screen and (max-width: 480px) {
     .header {
-        padding: var(--spacing-xs) var(--spacing-sm); /* Even tighter padding on very small screens */
-        min-height: 3rem; /* Smallest practical height */
+        padding: var(--spacing-xs) var(--spacing-sm);
+        /* Even tighter padding on very small screens */
+        min-height: 3rem;
+        /* Smallest practical height */
     }
 }
 
 
 /* About  Section*/
 .section {
-    padding: var(--spacing-xl) 0; /* 2.5rem vertical padding */
+    padding: var(--spacing-xl) 0;
+    /* 2.5rem vertical padding */
     background-color: var(--color-surface);
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg); /* 1.5rem horizontal padding */
+    padding: 0 var(--spacing-lg);
+    /* 1.5rem horizontal padding */
 }
 
 /* --- About Section Specific Styles --- */
 .support {
-    padding: var(--spacing-xl) 0; /* 50px converted to 2.5rem */
+    padding: var(--spacing-xl) 0;
+    /* 50px converted to 2.5rem */
 }
 
 .support .sectionContainer {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-xl); /* Space between title and info divs */
+    gap: var(--spacing-xl);
+    /* Space between title and info divs */
 }
 
 .support .sectionContainer .titleDiv {
@@ -809,9 +849,11 @@ h2 {
 .support .sectionContainer .titleDiv small {
     letter-spacing: 0.8rem;
     text-transform: uppercase;
-    font-size: 0.8125rem; /* 13px converted to rem */
+    font-size: 0.8125rem;
+    /* 13px converted to rem */
     color: var(--color-primary-dark);
-    line-height: var(--spacing-lg); /* 1.5rem line-height */
+    line-height: var(--spacing-lg);
+    /* 1.5rem line-height */
     font-weight: 600;
     display: block;
     margin-bottom: var(--spacing-sm);
@@ -835,25 +877,31 @@ h2 {
 
 /* --- infoDiv: Grid Layout for two columns --- */
 .support .infoDiv {
-    margin-top: var(--spacing-xl); /* 2rem converted to 2.5rem */
+    margin-top: var(--spacing-xl);
+    /* 2rem converted to 2.5rem */
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: var(--spacing-xxl); /* 3rem gap between columns */
-    align-items: flex-start; /* Align content to the top of each column */
+    grid-template-columns: 1fr 1fr;
+    /* Two equal columns */
+    gap: var(--spacing-xxl);
+    /* 3rem gap between columns */
+    align-items: flex-start;
+    /* Align content to the top of each column */
 }
 
 /* --- textDiv (Left Column) --- */
 .support .infoDiv .textDiv {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg); /* 1.5rem gap between singleInfo items */
+    gap: var(--spacing-lg);
+    /* 1.5rem gap between singleInfo items */
 }
 
 .support .infoDiv .textDiv .singleInfo {
     background-color: transparent;
     box-shadow: none;
     border-radius: 0;
-    padding: var(--spacing-md) 0; /* 1.0rem vertical padding */
+    padding: var(--spacing-md) 0;
+    /* 1.0rem vertical padding */
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -873,16 +921,20 @@ h2 {
 /* --- Number Styling (Pill/Badge) --- */
 .support .infoDiv .textDiv .singleInfo .number {
     background-color: var(--color-secondary-light);
-    padding: 0.3125rem 0.75rem; /* 5px 12px converted to rem */
-    width: 2.5rem; /* 40px converted to rem */
+    padding: 0.3125rem 0.75rem;
+    /* 5px 12px converted to rem */
+    width: 2.5rem;
+    /* 40px converted to rem */
     border-radius: 3rem;
     text-align: center;
-    font-size: 0.75rem; /* 12px converted to rem */
+    font-size: 0.75rem;
+    /* 12px converted to rem */
     font-weight: 700;
     color: var(--color-white);
     margin-bottom: var(--spacing-sm);
     display: block;
-    box-shadow: var(--shadow-soft); /* Added soft shadow */
+    box-shadow: var(--shadow-soft);
+    /* Added soft shadow */
 }
 
 /* --- Color Classes for Numbers --- */
@@ -906,37 +958,49 @@ h2 {
 }
 
 .support .infoDiv .textDiv .singleInfo p {
-    max-width: 500px; /* From your snippet */
+    max-width: 500px;
+    /* From your snippet */
     line-height: 1.6;
-    font-size: var(--spacing-sm); /* 0.8rem from your snippet */
+    font-size: var(--spacing-sm);
+    /* 0.8rem from your snippet */
     color: var(--color-text-secondary);
 }
 
 /* --- articleDiv (Right Column) --- */
 .support .infoDiv .articleDiv {
-    padding: var(--spacing-xl) var(--spacing-md); /* 4rem 2rem converted to 2.5rem 1.0rem */
+    padding: var(--spacing-xl) var(--spacing-md);
+    /* 4rem 2rem converted to 2.5rem 1.0rem */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border-left: 2px solid var(--color-primary-light); /* Subtle separator */
+    border-left: 2px solid var(--color-primary-light);
+    /* Subtle separator */
     font-style: italic;
     color: var(--color-primary-dark);
-    background-color: var(--color-white); /* Add a background for clarity */
-    border-radius: var(--border-radius-md); /* Soft rounded corners */
-    box-shadow: var(--shadow-soft); /* Soft shadow */
+    background-color: var(--color-white);
+    /* Add a background for clarity */
+    border-radius: var(--border-radius-md);
+    /* Soft rounded corners */
+    box-shadow: var(--shadow-soft);
+    /* Soft shadow */
 }
 
 
 .support .infoDiv .articleDiv .founders-note p {
-    margin-bottom: var(--spacing-md); /* 1rem converted to 1.0rem */
-    font-size: var(--spacing-md); /* 1rem converted to 1.0rem */
+    margin-bottom: var(--spacing-md);
+    /* 1rem converted to 1.0rem */
+    font-size: var(--spacing-md);
+    /* 1rem converted to 1.0rem */
     line-height: 1.5;
-    color: var(--color-text-primary); /* Ensure paragraph text is readable */
-    font-style: normal; /* Override italic from parent for paragraphs */
+    color: var(--color-text-primary);
+    /* Ensure paragraph text is readable */
+    font-style: normal;
+    /* Override italic from parent for paragraphs */
 }
 
 .support .infoDiv .articleDiv .founders-note p:last-of-type {
-    margin-bottom: var(--spacing-sm); /* Less margin for the signature block */
+    margin-bottom: var(--spacing-sm);
+    /* Less margin for the signature block */
 }
 
 .support .infoDiv .articleDiv .founders-note strong {
@@ -950,11 +1014,14 @@ h2 {
 }
 
 .support .infoDiv .articleDiv .founders-note .signature {
-    margin-top: var(--spacing-xl); /* 2rem converted to 2.5rem */
-    font-style: normal; /* Override italic from parent */
+    margin-top: var(--spacing-xl);
+    /* 2rem converted to 2.5rem */
+    font-style: normal;
+    /* Override italic from parent */
     font-weight: 600;
     color: var(--color-secondary);
-    font-size: 0.9rem; /* Set a specific font size for signature */
+    font-size: 0.9rem;
+    /* Set a specific font size for signature */
     line-height: 1.4;
 }
 
@@ -977,11 +1044,15 @@ h2 {
     .support .titleDiv h2 {
         font-size: 2.2rem;
     }
+
     .support .infoDiv {
-        gap: var(--spacing-lg); /* Reduce gap between columns on smaller desktops */
+        gap: var(--spacing-lg);
+        /* Reduce gap between columns on smaller desktops */
     }
+
     .support .infoDiv .articleDiv {
-        padding: var(--spacing-lg); /* Adjust padding for smaller desktops */
+        padding: var(--spacing-lg);
+        /* Adjust padding for smaller desktops */
     }
 }
 
@@ -989,21 +1060,26 @@ h2 {
     .section {
         padding: var(--spacing-lg) 0;
     }
+
     .container {
         padding: 0 var(--spacing-md);
     }
+
     .support .titleDiv h2 {
         font-size: 1.8rem;
         margin-bottom: var(--spacing-sm);
     }
+
     .support .titleDiv p {
         font-size: 1rem;
     }
 
     /* --- Mobile Layout: Stack columns vertically --- */
     .support .infoDiv {
-        grid-template-columns: 1fr; /* Stack columns */
-        gap: var(--spacing-lg); /* Gap between stacked sections */
+        grid-template-columns: 1fr;
+        /* Stack columns */
+        gap: var(--spacing-lg);
+        /* Gap between stacked sections */
         margin-top: var(--spacing-lg);
     }
 
@@ -1030,9 +1106,12 @@ h2 {
     }
 
     .support .infoDiv .articleDiv {
-        padding: var(--spacing-lg) var(--spacing-md); /* Adjust padding for mobile */
-        border-left: none; /* Remove left border on mobile */
-        border-top: 2px solid var(--color-primary-light); /* Add top border instead */
+        padding: var(--spacing-lg) var(--spacing-md);
+        /* Adjust padding for mobile */
+        border-left: none;
+        /* Remove left border on mobile */
+        border-top: 2px solid var(--color-primary-light);
+        /* Add top border instead */
     }
 
     .support .infoDiv .articleDiv .founders-note p {
@@ -1042,12 +1121,15 @@ h2 {
     }
 
     .support .infoDiv .articleDiv .founders-note .signature {
-        margin-top: var(--spacing-lg); /* Adjust margin for mobile */
+        margin-top: var(--spacing-lg);
+        /* Adjust margin for mobile */
         font-size: 0.85rem;
     }
+
     .support .infoDiv .articleDiv .founders-note .signature strong {
         font-size: 1rem;
     }
+
     .support .infoDiv .articleDiv .founders-note .signature em {
         font-size: 0.8rem;
     }
@@ -1057,56 +1139,75 @@ h2 {
     .support .titleDiv h2 {
         font-size: 1.6rem;
     }
+
     .support .titleDiv small {
         font-size: 0.75rem;
         letter-spacing: 0.5rem;
     }
 }
+
 /* --- Mentor Section Container --- */
 .mentor-section {
-    padding: var(--spacing-xl) 0; /* Vertical padding for the section */
+    padding: var(--spacing-xl) 0;
+    /* Vertical padding for the section */
     /* Subtle gradient background using root variables */
     background: linear-gradient(180deg, var(--color-surface), rgba(var(--color-surface-rgb), 0.8));
-    backdrop-filter: blur(1px); /* Slight blur for a soft feel */
-    text-align: center; /* Center the title and grid */
+    backdrop-filter: blur(1px);
+    /* Slight blur for a soft feel */
+    text-align: center;
+    /* Center the title and grid */
 }
 
-.mentor-container { /* Re-using container concept for max-width and centering */
+.mentor-container {
+    /* Re-using container concept for max-width and centering */
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-lg);
 }
 
 .mentor-section h2 {
-    font-size: 2.8rem; /* Large and impactful title */
+    font-size: 2.8rem;
+    /* Large and impactful title */
     color: var(--color-primary-dark);
-    margin-bottom: 10px; /* Space below the title */
+    margin-bottom: 10px;
+    /* Space below the title */
     font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow for pop */
-    display: flex; /* Allow emoji and text to be on same line */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle text shadow for pop */
+    display: flex;
+    /* Allow emoji and text to be on same line */
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-sm); /* Space between emoji and text */
+    gap: var(--spacing-sm);
+    /* Space between emoji and text */
 }
+
 .mentor-section p {
     font-size: 0.9rem;
-    color: var(--color-text-primary); /* Use a soft text color */
+    color: var(--color-text-primary);
+    /* Use a soft text color */
     max-width: 600px;
-    margin: 0 auto var(--spacing-lg); /* Center and give bottom space */
+    margin: 0 auto var(--spacing-lg);
+    /* Center and give bottom space */
     text-align: center;
     line-height: 1.6;
     font-weight: 400;
-    font-style: italic; /* Give it a gentle, storytelling tone */
+    font-style: italic;
+    /* Give it a gentle, storytelling tone */
 }
 
 
 /* --- Mentor Grid Layout --- */
 .mentor-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: var(--spacing-lg); /* Gap between mentor cards */
-    justify-content: center; /* Center cards if they don't fill the row */
-    margin-top: var(--spacing-md); /* Space below section title */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    /* Responsive grid */
+    gap: var(--spacing-lg);
+    /* Gap between mentor cards */
+    justify-content: center;
+    /* Center cards if they don't fill the row */
+    margin-top: var(--spacing-md);
+    /* Space below section title */
 }
 
 /* --- Mentor Card Styling (MentorSpotlight component) --- */
@@ -1116,9 +1217,12 @@ h2 {
     padding: var(--spacing-lg);
     border-radius: var(--border-radius-md);
     /* Layered shadows for depth and gloss using root variables */
-    box-shadow: var(--shadow-soft), /* Main shadow */
-                0 0 0 1px rgba(var(--color-white-rgb), 0.5) inset, /* Top-left 'light reflection' */
-                0 0 0 2px rgba(var(--color-white-rgb), 0.2) inset; /* Second inner highlight */
+    box-shadow: var(--shadow-soft),
+        /* Main shadow */
+        0 0 0 1px rgba(var(--color-white-rgb), 0.5) inset,
+        /* Top-left 'light reflection' */
+        0 0 0 2px rgba(var(--color-white-rgb), 0.2) inset;
+    /* Second inner highlight */
     transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     text-align: center;
     display: flex;
@@ -1126,21 +1230,27 @@ h2 {
     align-items: center;
     /* Subtle light border using root variables */
     border: 1px solid rgba(var(--color-white-rgb), 0.6);
-    cursor: pointer; /* Indicate interactivity */
+    cursor: pointer;
+    /* Indicate interactivity */
 }
 
 .mentor-card:hover {
-    transform: translateY(-8px); /* Lift effect on hover */
-    box-shadow: var(--shadow-medium), /* Stronger main shadow */
-                0 0 0 2px rgba(var(--color-white-rgb), 0.7) inset,
-                0 0 0 4px rgba(var(--color-white-rgb), 0.3) inset;
+    transform: translateY(-8px);
+    /* Lift effect on hover */
+    box-shadow: var(--shadow-medium),
+        /* Stronger main shadow */
+        0 0 0 2px rgba(var(--color-white-rgb), 0.7) inset,
+        0 0 0 4px rgba(var(--color-white-rgb), 0.3) inset;
 }
 
 .mentor-card .mentor-emoji {
-    font-size: 3rem; /* Large emoji for visual impact */
+    font-size: 3rem;
+    /* Large emoji for visual impact */
     margin-bottom: var(--spacing-md);
-    line-height: 1; /* Prevent extra space around emoji */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for emoji */
+    line-height: 1;
+    /* Prevent extra space around emoji */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for emoji */
 }
 
 .mentor-card .mentor-name {
@@ -1152,10 +1262,12 @@ h2 {
 
 .mentor-card .mentor-title {
     font-size: 0.95rem;
-    color: var(--color-secondary); /* Use secondary color for title */
+    color: var(--color-secondary);
+    /* Use secondary color for title */
     margin-bottom: var(--spacing-md);
     font-weight: 600;
-    line-height: 1.3; /* Ensure multi-line titles are readable */
+    line-height: 1.3;
+    /* Ensure multi-line titles are readable */
 }
 
 .mentor-card .mentor-quote {
@@ -1168,79 +1280,114 @@ h2 {
     background: rgba(var(--color-white-rgb), 0.4);
     padding: var(--spacing-sm);
     border-radius: var(--border-radius-sm);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Subtle inner shadow */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* Subtle inner shadow */
 }
 
 .mentor-card .mentor-tags {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--spacing-xs); /* Small gap between tags */
-    margin-top: auto; /* Push tags to the bottom if bio is shorter */
+    gap: var(--spacing-xs);
+    /* Small gap between tags */
+    margin-top: auto;
+    /* Push tags to the bottom if bio is shorter */
 }
 
 .mentor-card .mentor-tags span {
     /* Gradient for tags using root variables */
     background: linear-gradient(45deg, var(--color-primary-light), var(--color-secondary-light));
     color: var(--color-white);
-    padding: 0.3rem var(--spacing-sm); /* Smaller padding for tags */
-    border-radius: var(--border-radius-md); /* Rounded pill shape */
+    padding: 0.3rem var(--spacing-sm);
+    /* Smaller padding for tags */
+    border-radius: var(--border-radius-md);
+    /* Rounded pill shape */
     font-size: 0.75rem;
     font-weight: 500;
-    white-space: nowrap; /* Prevent tags from breaking */
-    box-shadow: var(--shadow-soft); /* Soft shadow for tags */
+    white-space: nowrap;
+    /* Prevent tags from breaking */
+    box-shadow: var(--shadow-soft);
+    /* Soft shadow for tags */
     transition: transform var(--transition-fast);
 }
 
 .mentor-card .mentor-tags span:hover {
-    transform: scale(1.05); /* Slight scale on tag hover */
+    transform: scale(1.05);
+    /* Slight scale on tag hover */
 }
-.mentorcta-btn{
-  margin: 25px;
-  padding: 0.75rem 2rem; /* Equivalent to px-8 py-3 */
-  background-color: var(--color-primary); /* A shade of purple, equivalent to bg-purple-600 */
-  color: #ffffff; /* White text, equivalent to text-white */
-  font-weight: 700; /* Bold font, equivalent to font-bold */
-  border-radius: 9999px; /* Fully rounded, equivalent to rounded-full */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Equivalent to shadow-lg */
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Equivalent to transition duration-300 ease-in-out */
-  transform: translateY(0) scale(1); /* Base scale */
-  border: none; /* Remove default button border */
-  cursor: pointer; /* Indicate it's clickable */
-  outline: none; /* Remove outline on focus */
+
+.mentorcta-btn {
+    margin: 25px;
+    padding: 0.75rem 2rem;
+    /* Equivalent to px-8 py-3 */
+    background-color: var(--color-primary);
+    /* A shade of purple, equivalent to bg-purple-600 */
+    color: #ffffff;
+    /* White text, equivalent to text-white */
+    font-weight: 700;
+    /* Bold font, equivalent to font-bold */
+    border-radius: 9999px;
+    /* Fully rounded, equivalent to rounded-full */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Equivalent to shadow-lg */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    /* Equivalent to transition duration-300 ease-in-out */
+    transform: translateY(0) scale(1);
+    /* Base scale */
+    border: none;
+    /* Remove default button border */
+    cursor: pointer;
+    /* Indicate it's clickable */
+    outline: none;
+    /* Remove outline on focus */
 }
-.mentorcta-btn:hover{
-    background-color: #8c4ac1; /* A slightly darker purple on hover, equivalent to hover:bg-purple-700 */
-  transform: scale(1.05); /* Slightly larger on hover, equivalent to hover:scale-105 */
+
+.mentorcta-btn:hover {
+    background-color: #8c4ac1;
+    /* A slightly darker purple on hover, equivalent to hover:bg-purple-700 */
+    transform: scale(1.05);
+    /* Slightly larger on hover, equivalent to hover:scale-105 */
 }
-.mentorcta-btn:focus{
-    box-shadow: 0 0 0 4px rgba(123, 63, 0, 0.5); 
+
+.mentorcta-btn:focus {
+    box-shadow: 0 0 0 4px rgba(123, 63, 0, 0.5);
 }
-.mentorcta-btn:active{
-    background-color: #6a3700; /* Slightly darker when pressed */
-  transform: translateY(2px) scale(0.98); /* Move down 2px and slightly shrink */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Smaller, more subtle shadow when pressed */
+
+.mentorcta-btn:active {
+    background-color: #6a3700;
+    /* Slightly darker when pressed */
+    transform: translateY(2px) scale(0.98);
+    /* Move down 2px and slightly shrink */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* Smaller, more subtle shadow when pressed */
 }
+
 /* --- Responsive Adjustments --- */
 @media screen and (max-width: 1024px) {
     .mentor-section h2 {
         font-size: 2.4rem;
     }
+
     .mentor-card {
         padding: var(--spacing-md);
     }
+
     .mentor-card .mentor-emoji {
         font-size: 2.5rem;
     }
+
     .mentor-card .mentor-name {
         font-size: 1.4rem;
     }
+
     .mentor-card .mentor-title {
         font-size: 0.9rem;
     }
+
     .mentor-card .mentor-quote {
         font-size: 0.95rem;
     }
+
     .mentor-card .mentor-tags span {
         font-size: 0.7rem;
         padding: 0.25rem var(--spacing-sm);
@@ -1252,30 +1399,43 @@ h2 {
         font-size: 2rem;
         margin-bottom: var(--spacing-lg);
     }
+
     .mentor-grid {
-        grid-template-columns: 1fr; /* Stack cards vertically */
-        max-width: 380px; /* Limit overall width for stacked cards */
-        margin: 0 auto; /* Center the stacked grid */
+        grid-template-columns: 1fr;
+        /* Stack cards vertically */
+        max-width: 380px;
+        /* Limit overall width for stacked cards */
+        margin: 0 auto;
+        /* Center the stacked grid */
     }
+
     .mentor-card {
         /* Simplify shadows for mobile using root variables */
         box-shadow: var(--shadow-soft);
-        border: none; /* Remove light border */
-        background: var(--color-white); /* Simpler background */
+        border: none;
+        /* Remove light border */
+        background: var(--color-white);
+        /* Simpler background */
     }
+
     .mentor-card:hover {
-        transform: none; /* Remove hover transform on mobile */
+        transform: none;
+        /* Remove hover transform on mobile */
         box-shadow: var(--shadow-medium);
     }
+
     .mentor-card .mentor-emoji {
         font-size: 2.2rem;
     }
+
     .mentor-card .mentor-name {
         font-size: 1.3rem;
     }
+
     .mentor-card .mentor-title {
         font-size: 0.85rem;
     }
+
     .mentor-card .mentor-quote {
         font-size: 0.9rem;
     }
@@ -1285,32 +1445,42 @@ h2 {
     .mentor-section h2 {
         font-size: 1.7rem;
     }
+
     .mentor-card {
         padding: var(--spacing-sm);
     }
+
     .mentor-card .mentor-emoji {
         font-size: 2rem;
     }
+
     .mentor-card .mentor-name {
         font-size: 1.2rem;
     }
+
     .mentor-card .mentor-title {
         font-size: 0.8rem;
     }
+
     .mentor-card .mentor-quote {
         font-size: 0.85rem;
     }
+
     .mentor-card .mentor-tags span {
         font-size: 0.65rem;
         padding: 0.2rem var(--spacing-sm);
     }
 }
+
 /* --- Resources Section Specific Styles (Accordion) --- */
 /* --- Keyframes for Title Animation --- */
 @keyframes sparkle-glow {
-    0%, 100% {
+
+    0%,
+    100% {
         text-shadow: 0 0 5px rgba(255, 255, 255, 0.4), 0 0 10px rgba(255, 255, 255, 0.2);
     }
+
     50% {
         text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
     }
@@ -1320,25 +1490,31 @@ h2 {
     0% {
         transform: scale(1) brightness(1);
     }
+
     50% {
-        transform: scale(1.05) brightness(1.1); /* Slightly larger and brighter */
+        transform: scale(1.05) brightness(1.1);
+        /* Slightly larger and brighter */
     }
+
     100% {
         transform: scale(1) brightness(1);
     }
 }
 
 .resources-section {
-    background-color: var(--color-surface); /* Light background for the section */
+    background-color: var(--color-surface);
+    /* Light background for the section */
     padding-top: var(--spacing-xl);
     padding-bottom: var(--spacing-xl);
 }
 
 .resources-section h2 {
-    font-size: 2.5rem; /* Larger heading */
+    font-size: 2.5rem;
+    /* Larger heading */
     font-weight: 800;
     text-align: center;
-    color: var(--color-primary-dark); /* Deeper purple for heading */
+    color: var(--color-primary-dark);
+    /* Deeper purple for heading */
     margin-bottom: var(--spacing-md);
 }
 
@@ -1347,36 +1523,53 @@ h2 {
     color: var(--color-text-secondary);
     text-align: center;
     max-width: 600px;
-    margin: 0 auto var(--spacing-xl); /* Center and add space below */
+    margin: 0 auto var(--spacing-xl);
+    /* Center and add space below */
 }
 
 .accordion {
-    width: 100%; /* Take full width of its parent */
-    max-width: 800px; /* Limit accordion width for readability */
-    margin-left: 0; /* Align to the left */
-    margin-right: auto; /* Allow auto margin on right to push it left if max-width is less than parent */
-    border-radius: var(--border-radius-md); /* Overall rounded container */
-    overflow: hidden; /* Ensures shadows and borders are contained */
+    width: 100%;
+    /* Take full width of its parent */
+    max-width: 800px;
+    /* Limit accordion width for readability */
+    margin-left: 0;
+    /* Align to the left */
+    margin-right: auto;
+    /* Allow auto margin on right to push it left if max-width is less than parent */
+    border-radius: var(--border-radius-md);
+    /* Overall rounded container */
+    overflow: hidden;
+    /* Ensures shadows and borders are contained */
     /* No shadow on the main accordion container, individual items have shadows */
 }
 
 .accordion-item {
-    background-color: var(--color-white); /* White box background */
-    border: 1px solid rgba(0, 0, 0, 0.07); /* Very subtle initial border */
-    margin-bottom: var(--spacing-sm); /* Space between items */
-    border-radius: var(--border-radius-md); /* Rounded corners for each box */
-    box-shadow: var(--shadow-sleek); /* Modern sleek shadow */
-    transition: var(--transition-subtle-lift); /* Subtle lift on hover/open */
+    background-color: var(--color-white);
+    /* White box background */
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    /* Very subtle initial border */
+    margin-bottom: var(--spacing-sm);
+    /* Space between items */
+    border-radius: var(--border-radius-md);
+    /* Rounded corners for each box */
+    box-shadow: var(--shadow-sleek);
+    /* Modern sleek shadow */
+    transition: var(--transition-subtle-lift);
+    /* Subtle lift on hover/open */
 }
 
 .accordion-item:last-child {
-    margin-bottom: 0; /* No margin after the last item */
+    margin-bottom: 0;
+    /* No margin after the last item */
 }
 
 .accordion-item.open {
-    border-color: var(--color-primary-light); /* Border highlights when open */
-    box-shadow: var(--shadow-medium); /* Slightly more prominent shadow when open */
-    transform: translateY(-3px); /* Subtle lift when open */
+    border-color: var(--color-primary-light);
+    /* Border highlights when open */
+    box-shadow: var(--shadow-medium);
+    /* Slightly more prominent shadow when open */
+    transform: translateY(-3px);
+    /* Subtle lift when open */
 }
 
 .accordion-header {
@@ -1384,48 +1577,61 @@ h2 {
     align-items: center;
     padding: var(--spacing-lg);
     cursor: pointer;
-    background-color: var(--color-white); /* White background for header */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08); /* Subtle separator inside the item */
+    background-color: var(--color-white);
+    /* White background for header */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    /* Subtle separator inside the item */
     transition: background-color var(--transition-fast);
 }
 
 .accordion-item.open .accordion-header {
-    background-color: var(--color-surface); /* Slightly lighter background when open */
-    border-bottom: none; /* No separator when open, as body content starts */
+    background-color: var(--color-surface);
+    /* Slightly lighter background when open */
+    border-bottom: none;
+    /* No separator when open, as body content starts */
 }
 
 .accordion-header:hover {
-    background-color: rgba(var(--color-primary-light), 0.03); /* Very subtle purple tint on hover */
+    background-color: rgba(var(--color-primary-light), 0.03);
+    /* Very subtle purple tint on hover */
 }
 
-.accordion-header span:first-child { /* Emoji */
-    font-size: 1.5rem; /* Reduced emoji size */
+.accordion-header span:first-child {
+    /* Emoji */
+    font-size: 1.5rem;
+    /* Reduced emoji size */
     margin-right: var(--spacing-md);
-    line-height: 1; /* Prevent extra space around emoji */
+    line-height: 1;
+    /* Prevent extra space around emoji */
 }
 
 .accordion-header h3 {
-    flex-grow: 1; /* Takes up available space */
+    flex-grow: 1;
+    /* Takes up available space */
     font-size: 1.25rem;
     font-weight: 600;
-    color: var(--color-primary); /* Primary purple for title */
+    color: var(--color-primary);
+    /* Primary purple for title */
     margin: 0;
 }
 
 .accordion-header .arrow {
     font-size: 1rem;
     font-weight: bold;
-    color: var(--color-primary); /* Primary purple for arrow */
+    color: var(--color-primary);
+    /* Primary purple for arrow */
     transition: transform var(--transition-normal);
 }
 
 .accordion-item.open .accordion-header .arrow {
-    transform: rotate(180deg); /* Rotate arrow when open */
+    transform: rotate(180deg);
+    /* Rotate arrow when open */
 }
 
 .accordion-body {
     padding: var(--spacing-lg);
-    padding-top: 0; /* No padding at top as header has it */
+    padding-top: 0;
+    /* No padding at top as header has it */
     color: var(--color-text-secondary);
     font-size: 0.9rem;
     line-height: 1.6;
@@ -1439,10 +1645,12 @@ h2 {
 
 .accordion-body a {
     display: inline-block;
-    background-color: var(--color-secondary); /* Hot pink for CTA button */
+    background-color: var(--color-secondary);
+    /* Hot pink for CTA button */
     color: var(--color-white);
     padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius-lg); /* More rounded button */
+    border-radius: var(--border-radius-lg);
+    /* More rounded button */
     text-decoration: none;
     font-weight: 600;
     box-shadow: var(--shadow-soft);
@@ -1450,13 +1658,15 @@ h2 {
 }
 
 .accordion-body a:hover {
-    background-color: var(--color-secondary-light); /* Lighter pink on hover */
+    background-color: var(--color-secondary-light);
+    /* Lighter pink on hover */
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
 }
 
 .accordion-body a:active {
-    background-color: var(--color-secondary-light); /* Even lighter on active */
+    background-color: var(--color-secondary-light);
+    /* Even lighter on active */
     transform: translateY(0);
     box-shadow: var(--shadow-soft);
 }
@@ -1466,15 +1676,20 @@ h2 {
     .resources-section h2 {
         font-size: 2rem;
     }
+
     .accordion-header {
         padding: var(--spacing-md);
     }
+
     .accordion-header span:first-child {
-        font-size: 1.3rem; /* Further reduce emoji on small screens */
+        font-size: 1.3rem;
+        /* Further reduce emoji on small screens */
     }
+
     .accordion-header h3 {
         font-size: 1.1rem;
     }
+
     .accordion-body {
         font-size: 0.9rem;
         padding: var(--spacing-md);
@@ -1486,18 +1701,603 @@ h2 {
     .resources-section h2 {
         font-size: 1.8rem;
     }
+
     .resources-section .intro-text {
         font-size: 1rem;
     }
+
     .accordion-header {
         padding: var(--spacing-sm);
     }
+
     .accordion-header span:first-child {
-        font-size: 1.2rem; /* Smallest emoji on very small screens */
+        font-size: 1.2rem;
+        /* Smallest emoji on very small screens */
     }
+
     .accordion-header h3 {
         font-size: 1rem;
     }
 }
 
+/* --- Newsletter SignUp Section --- */
+.newsletter-section {
+    position: relative;
+    top: 50px;
+    padding: var(--spacing-xl);
+    /* Generous padding */
+    background-color: var(--color-white);
+    /* Clean white background for the section */
+    border-radius: var(--border-radius-md);
+    /* Rounded corners for the section block */
+    box-shadow: var(--shadow-sleek);
+    /* Subtle lift for the whole block */
+    text-align: center;
+    /* Center all content */
+    max-width: 700px;
+    /* Max width for readability */
+    margin: var(--spacing-xxxl) auto;
+    /* Center the block and add vertical margin */
+}
+
+.newsletter-section h2 {
+    font-size: 2.25rem;
+    /* Larger heading */
+    font-weight: 800;
+    color: var(--color-primary-dark);
+    /* Deep purple */
+    margin-bottom: var(--spacing-md);
+}
+
+.newsletter-section p {
+    font-size: 1.05rem;
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    /* Constrain text width */
+    margin: 0 auto var(--spacing-lg);
+    /* Center and space below */
+    line-height: 1.6;
+}
+
+.newsletter-form {
+    display: flex;
+    /* Flexbox for input and button */
+    flex-direction: column;
+    /* Stack by default on small screens */
+    align-items: center;
+    /* Center items when stacked */
+    gap: var(--spacing-md);
+    /* Space between input and button */
+    width: 100%;
+    /* Take full width of parent */
+    max-width: 450px;
+    /* Max width for the form itself */
+    margin: 0 auto;
+    /* Center the form */
+}
+
+.newsletter-form input {
+    flex-grow: 1;
+    /* Input takes up available space */
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 1px solid rgba(var(--color-primary), 0.3);
+    /* Soft purple border */
+    border-radius: var(--border-radius-lg);
+    /* Very rounded input */
+    font-size: 1rem;
+    color: var(--color-text-primary);
+    background-color: var(--color-white);
+    width: 100%;
+    /* Full width when stacked */
+    box-shadow: var(--shadow-soft);
+    /* Subtle shadow for input field */
+    transition: all var(--transition-fast);
+    outline: none;
+    /* Remove default outline */
+}
+
+.newsletter-form input::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.7;
+}
+
+.newsletter-form input:focus {
+    border-color: var(--color-primary);
+    /* Darker border on focus */
+    box-shadow: 0 0 0 3px rgba(var(--color-primary-light), 0.5);
+    /* Glowing focus ring */
+}
+
+.newsletter-form button {
+    flex-shrink: 0;
+    /* Button doesn't shrink */
+    padding: var(--spacing-md) var(--spacing-xl);
+    background-color: var(--color-secondary);
+    /* Hot pink button */
+    color: var(--color-white);
+    font-size: 1.05rem;
+    font-weight: 700;
+    border: none;
+    border-radius: var(--border-radius-lg);
+    /* Very rounded button */
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    /* More prominent shadow for button */
+    transition: all var(--transition-normal);
+    outline: none;
+}
+
+.newsletter-form button:hover {
+    background-color: var(--color-secondary-light);
+    /* Lighter pink on hover */
+    transform: translateY(-2px);
+    /* Slight lift */
+    box-shadow: var(--shadow-strong);
+    /* Stronger shadow on hover */
+}
+
+.newsletter-form button:active {
+    transform: translateY(0);
+    /* Press down effect */
+    box-shadow: var(--shadow-soft);
+    /* Lighter shadow when pressed */
+}
+
+.newsletter-section .thank-you {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    /* Primary purple for thank you */
+    margin-top: var(--spacing-lg);
+    animation: fadeIn 0.8s ease-out;
+    /* Simple fade in */
+}
+
+/* Keyframe for thank you message */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Responsive Adjustments --- */
+@media (min-width: 600px) {
+
+    /* Adjustments for larger screens (e.g., tablets and desktops) */
+    .newsletter-form {
+        flex-direction: row;
+        /* Input and button side-by-side */
+        justify-content: center;
+        /* Center them within the form */
+        gap: var(--spacing-sm);
+        /* Smaller gap in row layout */
+    }
+
+    .newsletter-form input {
+        width: auto;
+        /* Allow input to grow based on flex */
+        max-width: 300px;
+        /* Cap input width for design */
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* General adjustments for smaller screens */
+    .resources-section h2,
+    .newsletter-section h2 {
+        font-size: 2rem;
+    }
+
+    .accordion-header {
+        padding: var(--spacing-md);
+    }
+
+    .accordion-header span:first-child {
+        font-size: 1.3rem;
+        /* Further reduce emoji on small screens */
+    }
+
+    .accordion-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .accordion-body {
+        font-size: 0.9rem;
+        padding: var(--spacing-md);
+        padding-top: 0;
+    }
+
+    .newsletter-section {
+        padding: var(--spacing-lg);
+    }
+
+    .newsletter-section h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Adjustments for very small screens (e.g., mobile phones) */
+    .resources-section h2,
+    .newsletter-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .resources-section .intro-text,
+    .newsletter-section p {
+        font-size: 1rem;
+    }
+
+    .accordion-header {
+        padding: var(--spacing-sm);
+    }
+
+    .accordion-header span:first-child {
+        font-size: 1.2rem;
+        /* Smallest emoji on very small screens */
+    }
+
+    .accordion-header h3 {
+        font-size: 1rem;
+    }
+
+    .newsletter-form input,
+    .newsletter-form button {
+        padding: var(--spacing-sm) var(--spacing-md);
+        /* Smaller padding for mobile elements */
+        font-size: 0.95rem;
+    }
+
+    .newsletter-section .thank-you {
+        font-size: 1.1rem;
+    }
+}
+
+/* Core Footer Styling */
+.footer {
+  background-color: var(--section-background-color);
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark-gray);
+  position: relative;
+  top: 100px;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: var(--spacing-md); /* Still keep minimal bottom padding */
+  box-shadow: var(--shadow-sm);
+}
+
+/* Decorative Pastel Wave at the top */
+.footer-wave {
+  position: relative;
+  width: 100%;
+  height: 40px; /* Even smaller wave height for mobile */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%23ede9fe' fill-opacity='1' d='M0,32L48,42.7C96,53,192,75,288,74.7C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,59,1392,50.7L1440,43L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  z-index: 1;
+  margin-bottom: var(--spacing-xs); /* Minimal space between wave and content */
+}
+
+/* Main Content Container - Mobile First */
+.footer-container {
+  max-width: 100%; /* Full width on small screens */
+  margin: 0 auto;
+  padding: var(--spacing-sm) var(--spacing-md); /* Reduced overall padding, but some horizontal padding */
+  display: flex; /* Use flexbox for vertical stacking */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items horizontally */
+  gap: var(--spacing-lg); /* Gap between major sections */
+  position: relative;
+  z-index: 2;
+  text-align: center; /* Default text alignment for stacked items */
+}
+
+/* Top Section: Logo and Mission */
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally for mobile */
+  margin-bottom: var(--spacing-sm);
+  width: 100%; /* Take full width */
+}
+
+.footer-logo img {
+  max-width: 80px; /* Even smaller logo for tiny screens */
+  height: auto;
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-mission h4 {
+  color: var(--primary-heading-color);
+  font-size: 1rem; /* Smaller mission heading for mobile */
+  margin-bottom: var(--spacing-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  text-align: center; /* Ensure text within flex is centered */
+}
+
+.footer-mission h4::before {
+  content: '🌷';
+  font-size: 1em;
+  margin-right: 3px;
+}
+
+.footer-mission p {
+  font-size: 0.75rem; /* Even smaller body text for mobile */
+  line-height: 1.4;
+  color: var(--text-medium-gray);
+  max-width: 200px; /* Constrain mission text width for readability */
+  margin: 0 auto; /* Center paragraph */
+}
+
+/* Main Footer Sections (Explore, Tools, Community, Connect) */
+.footer-sections {
+  display: grid; /* Use grid for these blocks, even on mobile */
+  grid-template-columns: repeat(2, 1fr); /* 2 columns on most mobile */
+  gap: var(--spacing-md); /* Tight gap between blocks */
+  margin-bottom: var(--spacing-md);
+  width: 100%; /* Take full width */
+  text-align: center; /* Center blocks' content */
+}
+
+.footer-block {
+  /* Flex properties are now managed by .footer-sections grid */
+  margin: 0; /* Ensure no default margins interfere */
+}
+
+.footer-block h5 {
+  color: var(--primary-heading-color);
+  font-size: 0.9rem; /* Small section headings for mobile */
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600;
+}
+
+.footer-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-block li {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-block a {
+  color: var(--text-medium-gray);
+  text-decoration: none;
+  font-size: 0.7rem; /* Very small text for links on mobile */
+  line-height: 1.3;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  display: inline-block;
+}
+
+.footer-block a:hover {
+  color: var(--button-main-color);
+  transform: translateX(1px); /* Even smaller hover shift */
+  text-decoration: none;
+}
+
+/* Social Icons specific styling */
+.footer-socials {
+  display: flex;
+  justify-content: center; /* Center icons within their block */
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
+}
+
+.footer-socials a {
+  color: var(--text-medium-gray);
+  font-size: 1rem; /* Smaller icons for mobile */
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.footer-socials a:hover {
+  color: var(--button-main-color);
+  transform: scale(1.05); /* Gentle pop effect */
+}
+
+/* Bottom Section: Affirmation, Inclusion, Copyright, Legal */
+.footer-bottom {
+  width: 100%;
+  text-align: center;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  color: var(--text-light-gray);
+  margin-top: var(--spacing-md);
+}
+
+.footer-bottom em {
+  font-size: 0.8rem; /* Smaller affirmation text for mobile */
+  font-style: italic;
+  color: var(--button-main-color);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer-bottom small {
+  font-size: 0.65rem; /* Smallest text for inclusion note on mobile */
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.3;
+}
+
+.footer-bottom p {
+  font-size: 0.65rem; /* Smallest text for copyright on mobile */
+  margin: 0;
+  color: var(--text-light-gray);
+}
+
+.footer-legal {
+  margin-top: var(--spacing-xs);
+}
+
+.footer-legal a {
+  color: var(--text-light-gray);
+  text-decoration: none;
+  font-size: 0.65rem; /* Smallest text for legal links on mobile */
+  transition: color var(--transition-fast);
+}
+
+/* --- Media Queries for Larger Devices --- */
+
+@media (min-width: 480px) { /* Adjust for slightly larger phones */
+  .footer-container {
+    grid-template-columns: 1fr; /* Still single column main sections */
+    gap: var(--spacing-xl); /* Slightly more gap between main sections */
+  }
+
+  .footer-sections {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Allow 2 or 3 columns if screen wide enough */
+    gap: var(--spacing-lg); /* More space between blocks */
+  }
+
+  .footer-logo img {
+    max-width: 70px;
+  }
+}
+
+@media (min-width: 768px) { /* Tablets and larger */
+  .footer-wave {
+    height: 50px; /* Slightly taller wave on tablets */
+  }
+
+  .footer-container {
+    max-width: 1000px; /* Revert to wider max-width */
+    padding: var(--spacing-md) var(--spacing-lg); /* More generous padding */
+    display: grid; /* Use grid for main layout */
+    grid-template-columns: 1.2fr repeat(3, 1fr); /* 4 columns for desktop */
+    gap: var(--spacing-xl); /* Standard desktop gap */
+    text-align: left; /* Revert text alignment for desktop layout */
+  }
+
+  .footer-top {
+    grid-column: span 1; /* Occupy first column */
+    align-items: flex-start; /* Align left */
+    margin-bottom: 0; /* No bottom margin on this grid item */
+  }
+
+  .footer-mission p {
+    max-width: 250px; /* Allow wider mission text */
+    margin: 0; /* Remove auto margins */
+  }
+
+  .footer-sections {
+    grid-column: span 3; /* Sections span the remaining three columns */
+    display: flex; /* Use flex for internal blocks */
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--spacing-md); /* Tight gap between blocks */
+    text-align: left; /* Align blocks' content left */
+  }
+
+  .footer-block {
+    flex: 1 1 auto; /* Allow blocks to grow/shrink based on content */
+    min-width: unset; /* Remove min-width constraint */
+  }
+
+  .footer-socials {
+    justify-content: flex-start; /* Align icons left */
+  }
+
+  .footer-bottom {
+    grid-column: 1 / -1; /* Span full width */
+    display: flex;
+    flex-direction: row; /* Layout horizontally */
+    flex-wrap: wrap;
+    justify-content: space-between; /* Distribute items */
+    align-items: center;
+    padding-top: var(--spacing-md);
+    text-align: left; /* Align text left */
+  }
+
+  .footer-bottom em,
+  .footer-bottom small,
+  .footer-bottom p,
+  .footer-legal {
+    display: inline-block;
+    margin: 0 var(--spacing-sm); /* Small horizontal spacing */
+  }
+
+  /* Reorder elements for horizontal flow */
+  .footer-bottom p { order: 4; }
+  .footer-bottom small { order: 2; }
+  .footer-bottom em { order: 1; }
+  .footer-legal { order: 3; }
+}
+
+@media (min-width: 1024px) { /* Larger desktops */
+  .footer-container {
+    grid-template-columns: 1.5fr repeat(3, 1fr); /* Slightly wider first column */
+    gap: var(--spacing-xxl); /* More generous gap */
+  }
+}
+.back-to-top {
+  position: fixed; /* Stays in place when scrolling */
+  bottom: var(--spacing-lg); /* Distance from the bottom of the viewport */
+  right: var(--spacing-lg); /* Distance from the right of the viewport */
+  background-color: var(--button-main-color); /* Vibrant purple background */
+  color: var(--color-white); /* White arrow */
+  border: none; /* No border */
+  border-radius: 50%; /* Perfect circle shape */
+  width: 48px; /* Size of the button */
+  height: 48px; /* Size of the button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem; /* Size of the arrow icon */
+  cursor: pointer;
+  box-shadow: var(--shadow-md); /* Soft shadow for depth */
+  transition: background-color var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
+  z-index: 1000; /* Ensure it's above other content */
+  opacity: 0.9; /* Slightly transparent by default */
+}
+
+.back-to-top:hover {
+  background-color: var(--button-hover-color); /* Darker purple on hover */
+  transform: translateY(-3px); /* Gentle lift effect on hover */
+  opacity: 1; /* Fully opaque on hover */
+}
+
+.back-to-top:active {
+  background-color: var(--button-active-color); /* Even darker purple when clicked */
+  transform: translateY(0); /* Sinks back down on active */
+  box-shadow: var(--shadow-sm); /* Smaller shadow on active */
+}
+
+.back-to-top:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px var(--button-focus-ring-color); /* Custom focus ring */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .back-to-top {
+    bottom: var(--spacing-md); /* Slightly smaller distance from bottom */
+    right: var(--spacing-md); /* Slightly smaller distance from right */
+    width: 40px; /* Smaller size for mobile */
+    height: 40px; /* Smaller size for mobile */
+    font-size: 1rem; /* Smaller arrow icon */
+  }
+}
+
+@media (max-width: 480px) {
+  .back-to-top {
+    bottom: var(--spacing-sm); /* Even smaller distance for very small screens */
+    right: var(--spacing-sm); /* Even smaller distance for very small screens */
+    width: 36px; /* Very small size for tiny screens */
+    height: 36px; /* Very small size for tiny screens */
+    font-size: 0.9rem; /* Very small arrow icon */
+  }
+}
 
