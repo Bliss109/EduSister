@@ -1,5 +1,6 @@
 import React from 'react'
 import '../../main.css'
+import { Link} from 'react-router-dom';
 
 //Imported icons
 import { GiGlassHeart } from "react-icons/gi";
@@ -25,8 +26,8 @@ const Navbar = () => {
 
                 {/* Right: Auth Links */}
                 <div className="atb flex">
-                    <span>Sign Up</span>
-                    <span>Log In</span>
+                    <Link to='/signup'><span>Sign Up</span></Link>
+                    <Link to='/login'><span>Log In</span></Link>
                 </div>
             </div>
 
