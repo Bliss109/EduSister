@@ -1,35 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar/Navbar'
+import Header from './components/Header/Header'
+import About from './components/About/About'
+import MentorSection from './components/Mentor/MentorSection'
+import ResourcesSection from './components/Resources/ResourceSection'
+import Newsletter from './components/Newsletter/Newsletter'
+import Footer from './components/Footer/Footer'
+import BackToTop from './components/BackToTop/BackToTop'
+import Signup from './Signup';
+import Login from './Login';
+import './global.css';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <Navbar />
+      <main className='main-content'>
+        <Routes>
+          <Route path="/" element={
+          <>
+            <About />
+            <MentorSection />
+            <ResourcesSection />
+            <Newsletter />
+            <Footer />
+            <BackToTop />
+          </>
+          } />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        <Header />
+        <About />
+        <MentorSection />
+        <ResourcesSection />
+        <Newsletter />
+        <Footer />
+        <BackToTop />
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

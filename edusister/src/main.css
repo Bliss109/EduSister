@@ -1,0 +1,1139 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&family=Poppins:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif; }
+
+:root {
+  /* Colors */
+  --color-primary: #8a2be2;
+  /* Example: A soft, appealing purple */
+  --color-primary-light: #b366ff;
+  --color-primary-dark: #6a1aab;
+  --color-secondary: #ff69b4;
+  /* Example: Hot pink for accents */
+  --color-secondary-light: #ff99cc;
+  --color-surface: #f9f9f9;
+  /* A light background for contrast */
+  --color-text-primary: #333333;
+  --color-text-secondary: #555555;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  /* Shadows */
+  --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
+  --shadow-strong: 0 12px 30px rgba(0, 0, 0, 0.18);
+  /* Borders & Radius */
+  --border-radius-sm: 0.35rem;
+  --border-radius-md: 0.75rem;
+  /* Used for navBarOne corners */
+  --border-radius-lg: 1.5rem;
+  /* Could be for larger elements */
+  /* Transitions */
+  --transition-fast: 0.2s ease-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.4s ease-in;
+  /* Spacing (Consistent naming) */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.8rem;
+  --spacing-md: 1.0rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2.5rem; }
+
+body {
+  background: var(--color-muted); }
+
+a {
+  text-decoration: none; }
+
+li {
+  list-style: none;
+  cursor: pointer; }
+
+.container {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
+
+.icon {
+  font-size: 1.3rem;
+  cursor: pointer; }
+
+.flex {
+  display: flex;
+  align-items: center; }
+
+.grid {
+  display: grid;
+  align-items: center; }
+
+.btn {
+  padding: .7rem 1.5rem;
+  background: var(--color-primary);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--color-surface); }
+  .btn a {
+    color: var(--color-muted);
+    font-weight: 500; }
+  .btn:hover {
+    background: var(--color-primary-light); }
+
+img,
+video {
+  width: 100%;
+  height: auto; }
+
+input {
+  font-size: 100%;
+  color: var(--input-placeholder); }
+
+p {
+  font-size: 13px;
+  color: var(--color-text-muted); }
+
+h4 {
+  padding: 1rem 0;
+  font-weight: 700;
+  color: var(--color-text-secondary); }
+
+h2 {
+  font-size: 25px;
+  padding: 1rem 0;
+  color: var(--color-text-primary); }
+
+.main-content {
+  padding-top: 250px; }
+  @media (max-width: 768px) {
+    .main-content {
+      padding-top: 500px;
+      /* or whatever padding works for smaller screens */ } }
+
+/*Navbar section*/
+.navBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Ensure it spans full width from left */
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  /* Apply backdrop-filter here for the whole navBar, so both parts get it */
+  backdrop-filter: blur(12px);
+  /* Slightly increased blur for more gloss */
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.1);
+  /* Very light background for gloss effect base */ }
+
+/* --- NavBarOne: Top Section (Glossy Effect) --- */
+.navBarOne {
+  display: flex;
+  justify-content: center;
+  /* Center the content horizontally */
+  align-items: center;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+  /* Glossy gradient */
+  box-shadow: var(--shadow-medium);
+  /* Slightly stronger shadow */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  /* Sharper, lighter border for shine */
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  /* Left border for gloss */
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  /* Right border for gloss */
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  /* Use variable */
+  padding: var(--spacing-md) var(--spacing-xl);
+  /* Increased padding for space */
+  max-width: 90%;
+  /* Max width to contain it, and allow centering */
+  margin: 0 auto;
+  /* Center the element */
+  box-sizing: border-box;
+  color: var(--color-text-primary);
+  position: relative;
+  /* For potential pseudo-elements for more gloss */
+  overflow: hidden;
+  /* Ensures content stays within rounded corners */ }
+
+/* Pseudo-element for extra shine */
+.navBarOne::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  /* Covers top half for highlight */
+  background: linear-gradient(rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+  /* Allows clicks to pass through */
+  z-index: 1;
+  /* Above background but below content */
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  /* Match parent */ }
+
+.navBarOne .heartIcon {
+  font-size: 2.5rem;
+  /* Larger icon for impact */
+  color: var(--color-primary);
+  /* Use primary color */
+  transition: color var(--transition-normal);
+  flex-shrink: 0;
+  /* Use flex-shrink instead of flex: 0 0 auto */
+  padding-right: var(--spacing-md);
+  /* Add some space to its right */ }
+
+.navBarOne .heartIcon:hover {
+  color: var(--color-secondary);
+  /* A more vibrant hover */
+  transform: scale(1.1);
+  /* Subtle scale effect */ }
+
+.navBarOne .middleLinks {
+  display: flex;
+  gap: var(--spacing-xl);
+  /* Increased gap for better spacing */
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  /* Use flex-grow instead of flex: 1 */
+  padding: 0 var(--spacing-lg);
+  /* Add horizontal padding for internal spacing */ }
+
+.navBarOne .middleLinks li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.85rem;
+  /* Slightly larger font */
+  font-weight: 500;
+  color: var(--color-text-primary);
+  /* Primary text color */
+  cursor: pointer;
+  position: relative;
+  /* For underline effect */ }
+
+.navBarOne .middleLinks li:hover {
+  color: var(--color-primary-dark);
+  /* Darker primary on hover */ }
+
+.navBarOne .middleLinks li::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-secondary);
+  transition: width var(--transition-fast) ease-in-out; }
+
+.navBarOne .middleLinks li:hover::after {
+  width: 100%; }
+
+.navBarOne .atb {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-shrink: 0;
+  padding-left: var(--spacing-md);
+  /* Add space to its left */ }
+
+.navBarOne .atb span {
+  background: rgba(255, 255, 255, 0.4);
+  /* Slightly stronger transparent background */
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-sm);
+  /* Use variable */
+  font-size: 0.9rem;
+  /* Slightly larger */
+  color: var(--color-primary-dark);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  /* Subtle border for button definition */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  /* Soft shadow for depth */ }
+
+.navBarOne .atb span:hover {
+  background: var(--color-secondary-light);
+  color: var(--color-white);
+  /* White text on hover for better contrast */
+  transform: translateY(-2px);
+  /* Subtle lift effect */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+
+/* --- NavBarTwo: Bottom Section (Reduced Size & Height) --- */
+.navBarTwo {
+  width: 100%;
+  /* Glassmorphism properties remain */
+  background: rgba(224, 133, 219, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(116, 31, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  /* --- REDUCED PADDING & HEIGHT --- */
+  padding: var(--spacing-xs) var(--spacing-md);
+  /* Significantly reduced vertical padding (0.25rem) and horizontal (1rem) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  /* Reduced gap between elements (0.5rem) */
+  border-bottom-left-radius: var(--border-radius-md);
+  border-bottom-right-radius: var(--border-radius-md);
+  z-index: 1; }
+
+.navBarTwo .logoDiv {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center; }
+
+.navBarTwo .logoDiv img {
+  width: 100px;
+  /* Reduced logo size */
+  height: auto;
+  object-fit: contain; }
+
+.navBarTwo .navBarMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  /* Reduced gap for menu items (1rem) */
+  flex-grow: 1;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.navBarTwo .listItem {
+  font-size: 0.9rem;
+  /* Slightly smaller font size for menu items */
+  font-weight: 500;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  /* Reduced padding for list items */
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast); }
+
+.navBarTwo .listItem:hover {
+  background: var(--color-primary-light);
+  color: var(--color-white);
+  transform: translateY(-1px); }
+
+.navBarTwo .btnOne {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  padding: var(--spacing-sm) var(--spacing-md);
+  /* Reduced padding for the button */
+  border-radius: var(--border-radius-sm);
+  font-size: 0.85rem;
+  /* Slightly smaller font size for the button */
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  flex-shrink: 0;
+  box-shadow: var(--shadow-soft); }
+
+.navBarTwo .btnOne:hover {
+  background: var(--color-secondary-light);
+  color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium); }
+
+/* --- Responsive Design --- */
+@media screen and (max-width: 992px) {
+  /* Adjust breakpoint for larger tablets/laptops */
+  .navBarOne {
+    padding: var(--spacing-md) var(--spacing-lg);
+    max-width: 95%;
+    /* Allow more width on smaller screens */ }
+
+  .navBarOne .middleLinks {
+    gap: var(--spacing-lg); } }
+@media screen and (max-width: 768px) {
+  .navBar {
+    flex-direction: column;
+    align-items: center;
+    /* Center content when stacked */ }
+
+  .navBarOne {
+    flex-direction: column;
+    /* Stack items in navBarOne */
+    text-align: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    width: 100%;
+    /* Allow it to take full width */
+    max-width: none;
+    /* Remove max-width constraint */
+    border-radius: 0;
+    /* Remove border-radius on mobile for full width */
+    border-left: none;
+    /* Remove side borders */
+    border-right: none;
+    box-shadow: var(--shadow-soft);
+    /* Lighter shadow on mobile */ }
+
+  .navBarOne::before {
+    display: none;
+    /* Hide extra shine pseudo-element on mobile if it looks cluttered */ }
+
+  .navBarOne .heartIcon {
+    padding-right: 0;
+    /* Remove padding */
+    margin-bottom: var(--spacing-sm);
+    /* Add space below icon */ }
+
+  .navBarOne .middleLinks {
+    flex-direction: column;
+    width: 100%;
+    /* Take full width */
+    gap: var(--spacing-sm);
+    padding: 0; }
+
+  .navBarOne .middleLinks li {
+    width: 100%;
+    /* Make list items full width */
+    justify-content: center;
+    /* Center text */
+    padding: var(--spacing-xs) 0;
+    /* Add vertical padding */ }
+
+  .navBarOne .atb {
+    flex-direction: column;
+    width: 100%;
+    padding-left: 0;
+    margin-top: var(--spacing-md);
+    /* Add space above buttons */ }
+
+  .navBarOne .atb span {
+    width: calc(100% - (2 * var(--spacing-md)));
+    /* Account for padding */
+    text-align: center;
+    margin: 0 auto;
+    /* Center buttons */ }
+
+  /* NavBarTwo on mobile */
+  .navBarTwo {
+    flex-direction: column;
+    align-items: center;
+    /* Center items for a stacked look */
+    gap: var(--spacing-md);
+    /* Consistent gap */
+    padding: var(--spacing-md);
+    /* More padding on mobile */
+    width: 100%;
+    /* Take full width */
+    border-radius: 0;
+    /* Remove border-radius */ }
+
+  .navBarTwo .logoDiv {
+    margin-bottom: var(--spacing-sm);
+    /* Space below logo */ }
+
+  .navBarTwo .logoDiv img {
+    width: 90px;
+    /* Adjust logo size for mobile */ }
+
+  .navBarTwo .navBarMenu {
+    flex-direction: column;
+    width: 100%;
+    gap: var(--spacing-sm);
+    padding: 0;
+    /* Initially hidden on mobile, will be toggled by JS */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-normal) ease-in-out; }
+
+  .navBarTwo .navBarMenu.active {
+    /* Class added by JS for toggling */
+    max-height: 300px;
+    /* Sufficient height to show all items, adjust as needed */ }
+
+  .navBarTwo .listItem {
+    width: 100%;
+    text-align: center;
+    padding: var(--spacing-sm) 0; }
+
+  .navBarTwo .btnOne {
+    width: calc(100% - (2 * var(--spacing-md)));
+    text-align: center;
+    margin-top: var(--spacing-md);
+    /* Space above button */ }
+
+  .navBarTwo .toggleIcon {
+    display: block;
+    /* Show the toggle icon */
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    font-size: 1.8rem;
+    /* Slightly larger icon */
+    cursor: pointer;
+    color: var(--color-primary-dark);
+    z-index: 1001;
+    /* Ensure it's above other elements */ } }
+/* Optional: Add a subtle animation for opening/closing mobile menu for better UX */
+/* This would require JavaScript to toggle a class like 'menu-open' or 'active' on .navBarMenu */
+/* Example:
+.navBarTwo .navBarMenu.active {
+    max-height: 300px; // Or whatever height is needed to show all items
+    opacity: 1;
+    visibility: visible;
+}
+*/
+/* HEADER LAYOUT */
+.header {
+  width: 100%;
+  background: var(--color-surface);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.header-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 4rem;
+  max-width: 1200px;
+  margin-top: -10px;
+  width: 100%;
+  flex-wrap: wrap; }
+
+.header-col {
+  flex: 1;
+  min-width: 300px; }
+
+.header-text h1 {
+  font-size: 2.6rem;
+  font-weight: bold;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-md); }
+
+.header-text p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--spacing-lg); }
+
+.cta-btn {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
+  border: none;
+  padding: 1.3rem 2rem;
+  font-weight: bold;
+  font-size: 0.95rem;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-medium);
+  transition: transform 0.3s ease; }
+
+.cta-btn:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(135deg, var(--color-secondary), var(--color-primary)); }
+
+/* CARDS GRID */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.8rem;
+  max-width: 500px;
+  margin: 0 auto; }
+
+.card {
+  background: rgba(224, 133, 219, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(116, 31, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 1.5rem;
+  text-align: center;
+  transition: 0.4s ease-in-out;
+  clip-path: circle(80% at 50% 50%); }
+
+.card:hover {
+  box-shadow: 0 12px 32px rgba(116, 31, 135, 0.45);
+  /* Stronger shadow */
+  background: rgba(255, 255, 255, 0.4);
+  /* Slightly lighter background */
+  border: 2px solid rgba(116, 31, 135, 0.7);
+  /* Darker purple border */
+  transform: scale(1.03) translateY(-6px);
+  /* Lift and scale */
+  transition: all 0.3s ease-in-out; }
+
+.category__icon {
+  font-size: 2rem;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem; }
+
+.card h5 {
+  font-size: 1.25rem;
+  color: var(--color-primary-dark);
+  margin-bottom: 0.5rem; }
+
+.card p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  line-height: 1.4; }
+
+/* Top-left petal */
+.card:nth-child(1) {
+  clip-path: polygon(0% 20%, 20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%); }
+
+/* Top-right petal */
+.card:nth-child(2) {
+  clip-path: polygon(0% 20%, 20% 0%, 100% 0%, 100% 80%, 80% 100%, 20% 100%, 0% 80%);
+  transform-origin: top right; }
+
+/* Bottom-left petal */
+.card:nth-child(3) {
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+  transform-origin: bottom left; }
+
+/* Bottom-right petal */
+.card:nth-child(4) {
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+  transform-origin: bottom right; }
+
+.animated-heading span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInLetter 1.2s ease forwards; }
+
+@keyframes fadeInLetter {
+  to {
+    opacity: 1;
+    transform: translateY(0); } }
+/* Responsive Adjustments for Option 1 */
+@media screen and (max-width: 768px) {
+  .header {
+    padding-top: 40px;
+    /* Adjust horizontal padding for smaller screens */ } }
+@media screen and (max-width: 480px) {
+  .header {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    /* Even tighter padding on very small screens */
+    min-height: 3rem;
+    /* Smallest practical height */ } }
+/* About  Section*/
+.section {
+  padding: var(--spacing-xl) 0;
+  /* 2.5rem vertical padding */
+  background-color: var(--color-surface); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  /* 1.5rem horizontal padding */ }
+
+/* --- About Section Specific Styles --- */
+.support {
+  padding: var(--spacing-xl) 0;
+  /* 50px converted to 2.5rem */ }
+
+.support .sectionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+  /* Space between title and info divs */ }
+
+.support .sectionContainer .titleDiv {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  color: var(--color-text-primary); }
+
+.support .sectionContainer .titleDiv small {
+  letter-spacing: 0.8rem;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  /* 13px converted to rem */
+  color: var(--color-primary-dark);
+  line-height: var(--spacing-lg);
+  /* 1.5rem line-height */
+  font-weight: 600;
+  display: block;
+  margin-bottom: var(--spacing-sm); }
+
+.support .sectionContainer .titleDiv h2 {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  font-weight: 700; }
+
+.support .sectionContainer .titleDiv p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto; }
+
+/* --- infoDiv: Grid Layout for two columns --- */
+.support .infoDiv {
+  margin-top: var(--spacing-xl);
+  /* 2rem converted to 2.5rem */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Two equal columns */
+  gap: var(--spacing-xxl);
+  /* 3rem gap between columns */
+  align-items: flex-start;
+  /* Align content to the top of each column */ }
+
+/* --- textDiv (Left Column) --- */
+.support .infoDiv .textDiv {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  /* 1.5rem gap between singleInfo items */ }
+
+.support .infoDiv .textDiv .singleInfo {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding: var(--spacing-md) 0;
+  /* 1.0rem vertical padding */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  transition: background-color var(--transition-normal); }
+
+.support .infoDiv .textDiv .singleInfo:last-child {
+  border-bottom: none; }
+
+.support .infoDiv .textDiv .singleInfo:hover {
+  background-color: rgba(0, 0, 0, 0.02); }
+
+/* --- Number Styling (Pill/Badge) --- */
+.support .infoDiv .textDiv .singleInfo .number {
+  background-color: var(--color-secondary-light);
+  padding: 0.3125rem 0.75rem;
+  /* 5px 12px converted to rem */
+  width: 2.5rem;
+  /* 40px converted to rem */
+  border-radius: 3rem;
+  text-align: center;
+  font-size: 0.75rem;
+  /* 12px converted to rem */
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--spacing-sm);
+  display: block;
+  box-shadow: var(--shadow-soft);
+  /* Added soft shadow */ }
+
+/* --- Color Classes for Numbers --- */
+.support .infoDiv .textDiv .singleInfo .number.colorOne {
+  background: var(--color-secondary); }
+
+.support .infoDiv .textDiv .singleInfo .number.colorTwo {
+  background: var(--color-secondary-light); }
+
+.support .infoDiv .textDiv .singleInfo .number.colorThree {
+  background: #e5adc4; }
+
+.support .infoDiv .textDiv .singleInfo h4 {
+  font-size: 1.3rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 600; }
+
+.support .infoDiv .textDiv .singleInfo p {
+  max-width: 500px;
+  /* From your snippet */
+  line-height: 1.6;
+  font-size: var(--spacing-sm);
+  /* 0.8rem from your snippet */
+  color: var(--color-text-secondary); }
+
+/* --- articleDiv (Right Column) --- */
+.support .infoDiv .articleDiv {
+  padding: var(--spacing-xl) var(--spacing-md);
+  /* 4rem 2rem converted to 2.5rem 1.0rem */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 2px solid var(--color-primary-light);
+  /* Subtle separator */
+  font-style: italic;
+  color: var(--color-primary-dark);
+  background-color: var(--color-white);
+  /* Add a background for clarity */
+  border-radius: var(--border-radius-md);
+  /* Soft rounded corners */
+  box-shadow: var(--shadow-soft);
+  /* Soft shadow */ }
+
+.support .infoDiv .articleDiv .founders-note p {
+  margin-bottom: var(--spacing-md);
+  /* 1rem converted to 1.0rem */
+  font-size: var(--spacing-md);
+  /* 1rem converted to 1.0rem */
+  line-height: 1.5;
+  color: var(--color-text-primary);
+  /* Ensure paragraph text is readable */
+  font-style: normal;
+  /* Override italic from parent for paragraphs */ }
+
+.support .infoDiv .articleDiv .founders-note p:last-of-type {
+  margin-bottom: var(--spacing-sm);
+  /* Less margin for the signature block */ }
+
+.support .infoDiv .articleDiv .founders-note strong {
+  color: var(--color-primary-dark);
+  font-weight: 700; }
+
+.support .infoDiv .articleDiv .founders-note em {
+  color: var(--color-text-secondary);
+  font-style: italic; }
+
+.support .infoDiv .articleDiv .founders-note .signature {
+  margin-top: var(--spacing-xl);
+  /* 2rem converted to 2.5rem */
+  font-style: normal;
+  /* Override italic from parent */
+  font-weight: 600;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  /* Set a specific font size for signature */
+  line-height: 1.4; }
+
+.support .infoDiv .articleDiv .founders-note .signature strong {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  display: block;
+  margin-top: var(--spacing-xs); }
+
+.support .infoDiv .articleDiv .founders-note .signature em {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  display: block; }
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 1024px) {
+  .support .titleDiv h2 {
+    font-size: 2.2rem; }
+
+  .support .infoDiv {
+    gap: var(--spacing-lg);
+    /* Reduce gap between columns on smaller desktops */ }
+
+  .support .infoDiv .articleDiv {
+    padding: var(--spacing-lg);
+    /* Adjust padding for smaller desktops */ } }
+@media screen and (max-width: 768px) {
+  .section {
+    padding: var(--spacing-lg) 0; }
+
+  .container {
+    padding: 0 var(--spacing-md); }
+
+  .support .titleDiv h2 {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-sm); }
+
+  .support .titleDiv p {
+    font-size: 1rem; }
+
+  /* --- Mobile Layout: Stack columns vertically --- */
+  .support .infoDiv {
+    grid-template-columns: 1fr;
+    /* Stack columns */
+    gap: var(--spacing-lg);
+    /* Gap between stacked sections */
+    margin-top: var(--spacing-lg); }
+
+  .support .infoDiv .textDiv {
+    gap: var(--spacing-md); }
+
+  .support .infoDiv .textDiv .singleInfo {
+    padding: var(--spacing-sm) 0; }
+
+  .support .infoDiv .textDiv .singleInfo .number {
+    font-size: 0.7rem;
+    width: 2.2rem;
+    padding: 0.25rem 0.6rem; }
+
+  .support .infoDiv .textDiv .singleInfo h4 {
+    font-size: 1.2rem; }
+
+  .support .infoDiv .textDiv .singleInfo p {
+    font-size: 0.9rem; }
+
+  .support .infoDiv .articleDiv {
+    padding: var(--spacing-lg) var(--spacing-md);
+    /* Adjust padding for mobile */
+    border-left: none;
+    /* Remove left border on mobile */
+    border-top: 2px solid var(--color-primary-light);
+    /* Add top border instead */ }
+
+  .support .infoDiv .articleDiv .founders-note p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-sm); }
+
+  .support .infoDiv .articleDiv .founders-note .signature {
+    margin-top: var(--spacing-lg);
+    /* Adjust margin for mobile */
+    font-size: 0.85rem; }
+
+  .support .infoDiv .articleDiv .founders-note .signature strong {
+    font-size: 1rem; }
+
+  .support .infoDiv .articleDiv .founders-note .signature em {
+    font-size: 0.8rem; } }
+@media screen and (max-width: 480px) {
+  .support .titleDiv h2 {
+    font-size: 1.6rem; }
+
+  .support .titleDiv small {
+    font-size: 0.75rem;
+    letter-spacing: 0.5rem; } }
+/* --- Mentor Section Container --- */
+.mentor-section {
+  padding: var(--spacing-xl) 0;
+  /* Vertical padding for the section */
+  /* Subtle gradient background using root variables */
+  background: linear-gradient(180deg, var(--color-surface), rgba(var(--color-surface-rgb), 0.8));
+  backdrop-filter: blur(1px);
+  /* Slight blur for a soft feel */
+  text-align: center;
+  /* Center the title and grid */ }
+
+.mentor-container {
+  /* Re-using container concept for max-width and centering */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg); }
+
+.mentor-section h2 {
+  font-size: 2.8rem;
+  /* Large and impactful title */
+  color: var(--color-primary-dark);
+  margin-bottom: 10px;
+  /* Space below the title */
+  font-weight: 800;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle text shadow for pop */
+  display: flex;
+  /* Allow emoji and text to be on same line */
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+  /* Space between emoji and text */ }
+
+.mentor-section p {
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  /* Use a soft text color */
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+  /* Center and give bottom space */
+  text-align: center;
+  line-height: 1.6;
+  font-weight: 400;
+  font-style: italic;
+  /* Give it a gentle, storytelling tone */ }
+
+/* --- Mentor Grid Layout --- */
+.mentor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Responsive grid */
+  gap: var(--spacing-lg);
+  /* Gap between mentor cards */
+  justify-content: center;
+  /* Center cards if they don't fill the row */
+  margin-top: var(--spacing-md);
+  /* Space below section title */ }
+
+/* --- Mentor Card Styling (MentorSpotlight component) --- */
+.mentor-card {
+  /* Soft glossy background using root variables */
+  background: linear-gradient(145deg, var(--color-white), rgba(var(--color-white-rgb), 0.9));
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  /* Layered shadows for depth and gloss using root variables */
+  box-shadow: var(--shadow-soft), 0 0 0 1px rgba(var(--color-white-rgb), 0.5) inset, 0 0 0 2px rgba(var(--color-white-rgb), 0.2) inset;
+  /* Second inner highlight */
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Subtle light border using root variables */
+  border: 1px solid rgba(var(--color-white-rgb), 0.6);
+  cursor: pointer;
+  /* Indicate interactivity */ }
+
+.mentor-card:hover {
+  transform: translateY(-8px);
+  /* Lift effect on hover */
+  box-shadow: var(--shadow-medium), 0 0 0 2px rgba(var(--color-white-rgb), 0.7) inset, 0 0 0 4px rgba(var(--color-white-rgb), 0.3) inset; }
+
+.mentor-card .mentor-emoji {
+  font-size: 3rem;
+  /* Large emoji for visual impact */
+  margin-bottom: var(--spacing-md);
+  line-height: 1;
+  /* Prevent extra space around emoji */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  /* Subtle shadow for emoji */ }
+
+.mentor-card .mentor-name {
+  font-size: 1.6rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--spacing-xs);
+  font-weight: 700; }
+
+.mentor-card .mentor-title {
+  font-size: 0.95rem;
+  color: var(--color-secondary);
+  /* Use secondary color for title */
+  margin-bottom: var(--spacing-md);
+  font-weight: 600;
+  line-height: 1.3;
+  /* Ensure multi-line titles are readable */ }
+
+.mentor-card .mentor-quote {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+  /* Slightly translucent background for quote using root variables */
+  background: rgba(var(--color-white-rgb), 0.4);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  /* Subtle inner shadow */ }
+
+.mentor-card .mentor-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  /* Small gap between tags */
+  margin-top: auto;
+  /* Push tags to the bottom if bio is shorter */ }
+
+.mentor-card .mentor-tags span {
+  /* Gradient for tags using root variables */
+  background: linear-gradient(45deg, var(--color-primary-light), var(--color-secondary-light));
+  color: var(--color-white);
+  padding: 0.3rem var(--spacing-sm);
+  /* Smaller padding for tags */
+  border-radius: var(--border-radius-md);
+  /* Rounded pill shape */
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  /* Prevent tags from breaking */
+  box-shadow: var(--shadow-soft);
+  /* Soft shadow for tags */
+  transition: transform var(--transition-fast); }
+
+.mentor-card .mentor-tags span:hover {
+  transform: scale(1.05);
+  /* Slight scale on tag hover */ }
+
+/* --- Responsive Adjustments --- */
+@media screen and (max-width: 1024px) {
+  .mentor-section h2 {
+    font-size: 2.4rem; }
+
+  .mentor-card {
+    padding: var(--spacing-md); }
+
+  .mentor-card .mentor-emoji {
+    font-size: 2.5rem; }
+
+  .mentor-card .mentor-name {
+    font-size: 1.4rem; }
+
+  .mentor-card .mentor-title {
+    font-size: 0.9rem; }
+
+  .mentor-card .mentor-quote {
+    font-size: 0.95rem; }
+
+  .mentor-card .mentor-tags span {
+    font-size: 0.7rem;
+    padding: 0.25rem var(--spacing-sm); } }
+@media screen and (max-width: 768px) {
+  .mentor-section h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-lg); }
+
+  .mentor-grid {
+    grid-template-columns: 1fr;
+    /* Stack cards vertically */
+    max-width: 380px;
+    /* Limit overall width for stacked cards */
+    margin: 0 auto;
+    /* Center the stacked grid */ }
+
+  .mentor-card {
+    /* Simplify shadows for mobile using root variables */
+    box-shadow: var(--shadow-soft);
+    border: none;
+    /* Remove light border */
+    background: var(--color-white);
+    /* Simpler background */ }
+
+  .mentor-card:hover {
+    transform: none;
+    /* Remove hover transform on mobile */
+    box-shadow: var(--shadow-medium); }
+
+  .mentor-card .mentor-emoji {
+    font-size: 2.2rem; }
+
+  .mentor-card .mentor-name {
+    font-size: 1.3rem; }
+
+  .mentor-card .mentor-title {
+    font-size: 0.85rem; }
+
+  .mentor-card .mentor-quote {
+    font-size: 0.9rem; } }
+@media screen and (max-width: 480px) {
+  .mentor-section h2 {
+    font-size: 1.7rem; }
+
+  .mentor-card {
+    padding: var(--spacing-sm); }
+
+  .mentor-card .mentor-emoji {
+    font-size: 2rem; }
+
+  .mentor-card .mentor-name {
+    font-size: 1.2rem; }
+
+  .mentor-card .mentor-title {
+    font-size: 0.8rem; }
+
+  .mentor-card .mentor-quote {
+    font-size: 0.85rem; }
+
+  .mentor-card .mentor-tags span {
+    font-size: 0.65rem;
+    padding: 0.2rem var(--spacing-sm); } }
+
+/*# sourceMappingURL=main.css.map */
