@@ -12,25 +12,70 @@
 }
 
 :root {
-    /* Colors */
+    /* Base Colors */
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    /* Primary Palette (from first input, with slight adjustments) */
     --color-primary: #8a2be2;
-    /* Example: A soft, appealing purple */
+    /* Soft, appealing purple */
     --color-primary-light: #b366ff;
     --color-primary-dark: #6a1aab;
+
+    /* Secondary/Accent Palette (from first input, with slight adjustments) */
     --color-secondary: #ff69b4;
-    /* Example: Hot pink for accents */
+    /* Hot pink for accents */
     --color-secondary-light: #ff99cc;
+
+    /* Neutral Colors */
     --color-surface: #f9f9f9;
     /* A light background for contrast */
     --color-text-primary: #333333;
     --color-text-secondary: #555555;
-    --color-white: #ffffff;
-    --color-black: #000000;
+
+    /* Semantic Colors (from second input, more concise) */
+    --primary-heading-color: #5b21b6;
+    /* Deep Purple - for headings, main text */
+    --accent-light-color: #ede9fe;
+    /* Very Light Lavender - for tags, subtle accents */
+    --section-background-color: #f7f0fd;
+    /* Soft, slightly pinkish Lavender - for section backgrounds */
+    --card-background-color: var(--color-white);
+    /* White - for card backgrounds, using existing white */
+
+    /* Button Colors */
+    --button-main-color: #8b5cf6;
+    /* Vibrant Purple - primary button color */
+    --button-hover-color: #7c3aed;
+    /* Darker Purple - button hover state */
+    --button-active-color: #6d28d9;
+    /* Even Darker Purple - button active (pressed) state */
+    --button-focus-ring-color: rgba(139, 92, 246, 0.5);
+    /* Semi-transparent focus ring */
+
+    /* Text Grays (more semantic naming) */
+    --text-dark-gray: #2d3748;
+    /* For names, stronger text */
+    --text-medium-gray: #4a5568;
+    /* For primary descriptions */
+    --text-light-gray: #718096;
+    /* For secondary/italic text */
 
     /* Shadows */
     --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.08);
+    /* From first input */
     --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
+    /* From first input */
     --shadow-strong: 0 12px 30px rgba(0, 0, 0, 0.18);
+    /* From first input */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* From second input, can be used for smaller elements */
+    --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06);
+    /* From second input, softer */
+    --shadow-lg: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 6px 12px -5px rgba(0, 0, 0, 0.08);
+    /* From second input, diffused */
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    /* From second input */
 
     /* Borders & Radius */
     --border-radius-sm: 0.35rem;
@@ -55,40 +100,7 @@
     --spacing-xxxl: 7.5rem;
     /* 120px - Even larger spacing */
 
-    //More concise default styling
-    --primary-heading-color: #5b21b6;
-    /* Deep Purple - for headings, main text */
-    --accent-light-color: #ede9fe;
-    /* Very Light Lavender - for tags, subtle accents */
-    --section-background-color: #f7f0fd;
-    /* Soft, slightly pinkish Lavender - for section backgrounds */
-    --card-background-color: #ffffff;
-    /* White - for card backgrounds */
-    --button-main-color: #8b5cf6;
-    /* Vibrant Purple - primary button color */
-    --button-hover-color: #7c3aed;
-    /* Darker Purple - button hover state */
-    --button-active-color: #6d28d9;
-    /* Even Darker Purple - button active (pressed) state */
-    --button-focus-ring-color: rgba(139, 92, 246, 0.5);
-    /* Semi-transparent focus ring */
-
-    --text-dark-gray: #2d3748;
-    /* For names, stronger text */
-    --text-medium-gray: #4a5568;
-    /* For primary descriptions */
-    --text-light-gray: #718096;
-    /* For secondary/italic text */
-
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    /* Light shadow */
-    --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.1), 0 3px 6px -2px rgba(0, 0, 0, 0.06);
-    /* Softer medium shadow */
-    --shadow-lg: 0 15px 30px -5px rgba(0, 0, 0, 0.15), 0 6px 12px -5px rgba(0, 0, 0, 0.08);
-    /* More diffused large shadow */
-    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-    /* Slightly stronger inner shadow */
-
+    /* Footer Specific Colors */
     --color-footer-bg: #2c2c2c;
     /* Dark charcoal gray for footer background */
     --color-footer-text: #e0e0e0;
@@ -1963,341 +1975,766 @@ h2 {
 
 /* Core Footer Styling */
 .footer {
-  background-color: var(--section-background-color);
-  font-family: 'Poppins', sans-serif;
-  color: var(--text-dark-gray);
-  position: relative;
-  top: 100px;
-  overflow: hidden;
-  padding-top: 0;
-  padding-bottom: var(--spacing-md); /* Still keep minimal bottom padding */
-  box-shadow: var(--shadow-sm);
+    background-color: var(--section-background-color);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark-gray);
+    position: relative;
+    top: 100px;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: var(--spacing-md);
+    /* Still keep minimal bottom padding */
+    box-shadow: var(--shadow-sm);
 }
 
 /* Decorative Pastel Wave at the top */
 .footer-wave {
-  position: relative;
-  width: 100%;
-  height: 40px; /* Even smaller wave height for mobile */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%23ede9fe' fill-opacity='1' d='M0,32L48,42.7C96,53,192,75,288,74.7C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,59,1392,50.7L1440,43L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  z-index: 1;
-  margin-bottom: var(--spacing-xs); /* Minimal space between wave and content */
+    position: relative;
+    width: 100%;
+    height: 40px;
+    /* Even smaller wave height for mobile */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100'%3E%3Cpath fill='%23ede9fe' fill-opacity='1' d='M0,32L48,42.7C96,53,192,75,288,74.7C384,75,480,53,576,48C672,43,768,53,864,64C960,75,1056,85,1152,80C1248,75,1344,59,1392,50.7L1440,43L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    z-index: 1;
+    margin-bottom: var(--spacing-xs);
+    /* Minimal space between wave and content */
 }
 
 /* Main Content Container - Mobile First */
 .footer-container {
-  max-width: 100%; /* Full width on small screens */
-  margin: 0 auto;
-  padding: var(--spacing-sm) var(--spacing-md); /* Reduced overall padding, but some horizontal padding */
-  display: flex; /* Use flexbox for vertical stacking */
-  flex-direction: column; /* Stack elements vertically */
-  align-items: center; /* Center items horizontally */
-  gap: var(--spacing-lg); /* Gap between major sections */
-  position: relative;
-  z-index: 2;
-  text-align: center; /* Default text alignment for stacked items */
+    max-width: 100%;
+    /* Full width on small screens */
+    margin: 0 auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+    /* Reduced overall padding, but some horizontal padding */
+    display: flex;
+    /* Use flexbox for vertical stacking */
+    flex-direction: column;
+    /* Stack elements vertically */
+    align-items: center;
+    /* Center items horizontally */
+    gap: var(--spacing-lg);
+    /* Gap between major sections */
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    /* Default text alignment for stacked items */
 }
 
 /* Top Section: Logo and Mission */
 .footer-top {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center horizontally for mobile */
-  margin-bottom: var(--spacing-sm);
-  width: 100%; /* Take full width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Center horizontally for mobile */
+    margin-bottom: var(--spacing-sm);
+    width: 100%;
+    /* Take full width */
 }
 
 .footer-logo img {
-  max-width: 80px; /* Even smaller logo for tiny screens */
-  height: auto;
-  margin-bottom: var(--spacing-xs);
+    max-width: 80px;
+    /* Even smaller logo for tiny screens */
+    height: auto;
+    margin-bottom: var(--spacing-xs);
 }
 
 .footer-mission h4 {
-  color: var(--primary-heading-color);
-  font-size: 1rem; /* Smaller mission heading for mobile */
-  margin-bottom: var(--spacing-xs);
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  text-align: center; /* Ensure text within flex is centered */
+    color: var(--primary-heading-color);
+    font-size: 1rem;
+    /* Smaller mission heading for mobile */
+    margin-bottom: var(--spacing-xs);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    text-align: center;
+    /* Ensure text within flex is centered */
 }
 
 .footer-mission h4::before {
-  content: '🌷';
-  font-size: 1em;
-  margin-right: 3px;
+    content: '🌷';
+    font-size: 1em;
+    margin-right: 3px;
 }
 
 .footer-mission p {
-  font-size: 0.75rem; /* Even smaller body text for mobile */
-  line-height: 1.4;
-  color: var(--text-medium-gray);
-  max-width: 200px; /* Constrain mission text width for readability */
-  margin: 0 auto; /* Center paragraph */
+    font-size: 0.75rem;
+    /* Even smaller body text for mobile */
+    line-height: 1.4;
+    color: var(--text-medium-gray);
+    max-width: 200px;
+    /* Constrain mission text width for readability */
+    margin: 0 auto;
+    /* Center paragraph */
 }
 
 /* Main Footer Sections (Explore, Tools, Community, Connect) */
 .footer-sections {
-  display: grid; /* Use grid for these blocks, even on mobile */
-  grid-template-columns: repeat(2, 1fr); /* 2 columns on most mobile */
-  gap: var(--spacing-md); /* Tight gap between blocks */
-  margin-bottom: var(--spacing-md);
-  width: 100%; /* Take full width */
-  text-align: center; /* Center blocks' content */
+    display: grid;
+    /* Use grid for these blocks, even on mobile */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns on most mobile */
+    gap: var(--spacing-md);
+    /* Tight gap between blocks */
+    margin-bottom: var(--spacing-md);
+    width: 100%;
+    /* Take full width */
+    text-align: center;
+    /* Center blocks' content */
 }
 
 .footer-block {
-  /* Flex properties are now managed by .footer-sections grid */
-  margin: 0; /* Ensure no default margins interfere */
+    /* Flex properties are now managed by .footer-sections grid */
+    margin: 0;
+    /* Ensure no default margins interfere */
 }
 
 .footer-block h5 {
-  color: var(--primary-heading-color);
-  font-size: 0.9rem; /* Small section headings for mobile */
-  margin-bottom: var(--spacing-sm);
-  font-weight: 600;
+    color: var(--primary-heading-color);
+    font-size: 0.9rem;
+    /* Small section headings for mobile */
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
 }
 
 .footer-block ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-block li {
-  margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
 }
 
 .footer-block a {
-  color: var(--text-medium-gray);
-  text-decoration: none;
-  font-size: 0.7rem; /* Very small text for links on mobile */
-  line-height: 1.3;
-  transition: color var(--transition-fast), transform var(--transition-fast);
-  display: inline-block;
+    color: var(--text-medium-gray);
+    text-decoration: none;
+    font-size: 0.7rem;
+    /* Very small text for links on mobile */
+    line-height: 1.3;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: inline-block;
 }
 
 .footer-block a:hover {
-  color: var(--button-main-color);
-  transform: translateX(1px); /* Even smaller hover shift */
-  text-decoration: none;
+    color: var(--button-main-color);
+    transform: translateX(1px);
+    /* Even smaller hover shift */
+    text-decoration: none;
 }
 
 /* Social Icons specific styling */
 .footer-socials {
-  display: flex;
-  justify-content: center; /* Center icons within their block */
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-xs);
+    display: flex;
+    justify-content: center;
+    /* Center icons within their block */
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
 }
 
 .footer-socials a {
-  color: var(--text-medium-gray);
-  font-size: 1rem; /* Smaller icons for mobile */
-  transition: color var(--transition-fast), transform var(--transition-fast);
+    color: var(--text-medium-gray);
+    font-size: 1rem;
+    /* Smaller icons for mobile */
+    transition: color var(--transition-fast), transform var(--transition-fast);
 }
 
 .footer-socials a:hover {
-  color: var(--button-main-color);
-  transform: scale(1.05); /* Gentle pop effect */
+    color: var(--button-main-color);
+    transform: scale(1.05);
+    /* Gentle pop effect */
 }
 
 /* Bottom Section: Affirmation, Inclusion, Copyright, Legal */
 .footer-bottom {
-  width: 100%;
-  text-align: center;
-  padding-top: var(--spacing-sm);
-  border-top: 1px solid rgba(0, 0, 0, 0.03);
-  color: var(--text-light-gray);
-  margin-top: var(--spacing-md);
+    width: 100%;
+    text-align: center;
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid rgba(0, 0, 0, 0.03);
+    color: var(--text-light-gray);
+    margin-top: var(--spacing-md);
 }
 
 .footer-bottom em {
-  font-size: 0.8rem; /* Smaller affirmation text for mobile */
-  font-style: italic;
-  color: var(--button-main-color);
-  display: block;
-  margin-bottom: var(--spacing-xs);
+    font-size: 0.8rem;
+    /* Smaller affirmation text for mobile */
+    font-style: italic;
+    color: var(--button-main-color);
+    display: block;
+    margin-bottom: var(--spacing-xs);
 }
 
 .footer-bottom small {
-  font-size: 0.65rem; /* Smallest text for inclusion note on mobile */
-  display: block;
-  margin-bottom: var(--spacing-xs);
-  line-height: 1.3;
+    font-size: 0.65rem;
+    /* Smallest text for inclusion note on mobile */
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.3;
 }
 
 .footer-bottom p {
-  font-size: 0.65rem; /* Smallest text for copyright on mobile */
-  margin: 0;
-  color: var(--text-light-gray);
+    font-size: 0.65rem;
+    /* Smallest text for copyright on mobile */
+    margin: 0;
+    color: var(--text-light-gray);
 }
 
 .footer-legal {
-  margin-top: var(--spacing-xs);
+    margin-top: var(--spacing-xs);
 }
 
 .footer-legal a {
-  color: var(--text-light-gray);
-  text-decoration: none;
-  font-size: 0.65rem; /* Smallest text for legal links on mobile */
-  transition: color var(--transition-fast);
+    color: var(--text-light-gray);
+    text-decoration: none;
+    font-size: 0.65rem;
+    /* Smallest text for legal links on mobile */
+    transition: color var(--transition-fast);
 }
 
 /* --- Media Queries for Larger Devices --- */
 
-@media (min-width: 480px) { /* Adjust for slightly larger phones */
-  .footer-container {
-    grid-template-columns: 1fr; /* Still single column main sections */
-    gap: var(--spacing-xl); /* Slightly more gap between main sections */
-  }
+@media (min-width: 480px) {
 
-  .footer-sections {
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Allow 2 or 3 columns if screen wide enough */
-    gap: var(--spacing-lg); /* More space between blocks */
-  }
+    /* Adjust for slightly larger phones */
+    .footer-container {
+        grid-template-columns: 1fr;
+        /* Still single column main sections */
+        gap: var(--spacing-xl);
+        /* Slightly more gap between main sections */
+    }
 
-  .footer-logo img {
-    max-width: 70px;
-  }
+    .footer-sections {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        /* Allow 2 or 3 columns if screen wide enough */
+        gap: var(--spacing-lg);
+        /* More space between blocks */
+    }
+
+    .footer-logo img {
+        max-width: 70px;
+    }
 }
 
-@media (min-width: 768px) { /* Tablets and larger */
-  .footer-wave {
-    height: 50px; /* Slightly taller wave on tablets */
-  }
+@media (min-width: 768px) {
 
-  .footer-container {
-    max-width: 1000px; /* Revert to wider max-width */
-    padding: var(--spacing-md) var(--spacing-lg); /* More generous padding */
-    display: grid; /* Use grid for main layout */
-    grid-template-columns: 1.2fr repeat(3, 1fr); /* 4 columns for desktop */
-    gap: var(--spacing-xl); /* Standard desktop gap */
-    text-align: left; /* Revert text alignment for desktop layout */
-  }
+    /* Tablets and larger */
+    .footer-wave {
+        height: 50px;
+        /* Slightly taller wave on tablets */
+    }
 
-  .footer-top {
-    grid-column: span 1; /* Occupy first column */
-    align-items: flex-start; /* Align left */
-    margin-bottom: 0; /* No bottom margin on this grid item */
-  }
+    .footer-container {
+        max-width: 1000px;
+        /* Revert to wider max-width */
+        padding: var(--spacing-md) var(--spacing-lg);
+        /* More generous padding */
+        display: grid;
+        /* Use grid for main layout */
+        grid-template-columns: 1.2fr repeat(3, 1fr);
+        /* 4 columns for desktop */
+        gap: var(--spacing-xl);
+        /* Standard desktop gap */
+        text-align: left;
+        /* Revert text alignment for desktop layout */
+    }
 
-  .footer-mission p {
-    max-width: 250px; /* Allow wider mission text */
-    margin: 0; /* Remove auto margins */
-  }
+    .footer-top {
+        grid-column: span 1;
+        /* Occupy first column */
+        align-items: flex-start;
+        /* Align left */
+        margin-bottom: 0;
+        /* No bottom margin on this grid item */
+    }
 
-  .footer-sections {
-    grid-column: span 3; /* Sections span the remaining three columns */
-    display: flex; /* Use flex for internal blocks */
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    gap: var(--spacing-md); /* Tight gap between blocks */
-    text-align: left; /* Align blocks' content left */
-  }
+    .footer-mission p {
+        max-width: 250px;
+        /* Allow wider mission text */
+        margin: 0;
+        /* Remove auto margins */
+    }
 
-  .footer-block {
-    flex: 1 1 auto; /* Allow blocks to grow/shrink based on content */
-    min-width: unset; /* Remove min-width constraint */
-  }
+    .footer-sections {
+        grid-column: span 3;
+        /* Sections span the remaining three columns */
+        display: flex;
+        /* Use flex for internal blocks */
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: var(--spacing-md);
+        /* Tight gap between blocks */
+        text-align: left;
+        /* Align blocks' content left */
+    }
 
-  .footer-socials {
-    justify-content: flex-start; /* Align icons left */
-  }
+    .footer-block {
+        flex: 1 1 auto;
+        /* Allow blocks to grow/shrink based on content */
+        min-width: unset;
+        /* Remove min-width constraint */
+    }
 
-  .footer-bottom {
-    grid-column: 1 / -1; /* Span full width */
-    display: flex;
-    flex-direction: row; /* Layout horizontally */
-    flex-wrap: wrap;
-    justify-content: space-between; /* Distribute items */
-    align-items: center;
-    padding-top: var(--spacing-md);
-    text-align: left; /* Align text left */
-  }
+    .footer-socials {
+        justify-content: flex-start;
+        /* Align icons left */
+    }
 
-  .footer-bottom em,
-  .footer-bottom small,
-  .footer-bottom p,
-  .footer-legal {
-    display: inline-block;
-    margin: 0 var(--spacing-sm); /* Small horizontal spacing */
-  }
+    .footer-bottom {
+        grid-column: 1 / -1;
+        /* Span full width */
+        display: flex;
+        flex-direction: row;
+        /* Layout horizontally */
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Distribute items */
+        align-items: center;
+        padding-top: var(--spacing-md);
+        text-align: left;
+        /* Align text left */
+    }
 
-  /* Reorder elements for horizontal flow */
-  .footer-bottom p { order: 4; }
-  .footer-bottom small { order: 2; }
-  .footer-bottom em { order: 1; }
-  .footer-legal { order: 3; }
+    .footer-bottom em,
+    .footer-bottom small,
+    .footer-bottom p,
+    .footer-legal {
+        display: inline-block;
+        margin: 0 var(--spacing-sm);
+        /* Small horizontal spacing */
+    }
+
+    /* Reorder elements for horizontal flow */
+    .footer-bottom p {
+        order: 4;
+    }
+
+    .footer-bottom small {
+        order: 2;
+    }
+
+    .footer-bottom em {
+        order: 1;
+    }
+
+    .footer-legal {
+        order: 3;
+    }
 }
 
-@media (min-width: 1024px) { /* Larger desktops */
-  .footer-container {
-    grid-template-columns: 1.5fr repeat(3, 1fr); /* Slightly wider first column */
-    gap: var(--spacing-xxl); /* More generous gap */
-  }
+@media (min-width: 1024px) {
+
+    /* Larger desktops */
+    .footer-container {
+        grid-template-columns: 1.5fr repeat(3, 1fr);
+        /* Slightly wider first column */
+        gap: var(--spacing-xxl);
+        /* More generous gap */
+    }
 }
+
 .back-to-top {
-  position: fixed; /* Stays in place when scrolling */
-  bottom: var(--spacing-lg); /* Distance from the bottom of the viewport */
-  right: var(--spacing-lg); /* Distance from the right of the viewport */
-  background-color: var(--button-main-color); /* Vibrant purple background */
-  color: var(--color-white); /* White arrow */
-  border: none; /* No border */
-  border-radius: 50%; /* Perfect circle shape */
-  width: 48px; /* Size of the button */
-  height: 48px; /* Size of the button */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem; /* Size of the arrow icon */
-  cursor: pointer;
-  box-shadow: var(--shadow-md); /* Soft shadow for depth */
-  transition: background-color var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
-  z-index: 1000; /* Ensure it's above other content */
-  opacity: 0.9; /* Slightly transparent by default */
+    position: fixed;
+    /* Stays in place when scrolling */
+    bottom: var(--spacing-lg);
+    /* Distance from the bottom of the viewport */
+    right: var(--spacing-lg);
+    /* Distance from the right of the viewport */
+    background-color: var(--button-main-color);
+    /* Vibrant purple background */
+    color: var(--color-white);
+    /* White arrow */
+    border: none;
+    /* No border */
+    border-radius: 50%;
+    /* Perfect circle shape */
+    width: 48px;
+    /* Size of the button */
+    height: 48px;
+    /* Size of the button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    /* Size of the arrow icon */
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    /* Soft shadow for depth */
+    transition: background-color var(--transition-fast), transform var(--transition-fast), opacity var(--transition-fast);
+    z-index: 1000;
+    /* Ensure it's above other content */
+    opacity: 0.9;
+    /* Slightly transparent by default */
 }
 
 .back-to-top:hover {
-  background-color: var(--button-hover-color); /* Darker purple on hover */
-  transform: translateY(-3px); /* Gentle lift effect on hover */
-  opacity: 1; /* Fully opaque on hover */
+    background-color: var(--button-hover-color);
+    /* Darker purple on hover */
+    transform: translateY(-3px);
+    /* Gentle lift effect on hover */
+    opacity: 1;
+    /* Fully opaque on hover */
 }
 
 .back-to-top:active {
-  background-color: var(--button-active-color); /* Even darker purple when clicked */
-  transform: translateY(0); /* Sinks back down on active */
-  box-shadow: var(--shadow-sm); /* Smaller shadow on active */
+    background-color: var(--button-active-color);
+    /* Even darker purple when clicked */
+    transform: translateY(0);
+    /* Sinks back down on active */
+    box-shadow: var(--shadow-sm);
+    /* Smaller shadow on active */
 }
 
 .back-to-top:focus {
-  outline: none; /* Remove default outline */
-  box-shadow: 0 0 0 3px var(--button-focus-ring-color); /* Custom focus ring */
+    outline: none;
+    /* Remove default outline */
+    box-shadow: 0 0 0 3px var(--button-focus-ring-color);
+    /* Custom focus ring */
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 768px) {
-  .back-to-top {
-    bottom: var(--spacing-md); /* Slightly smaller distance from bottom */
-    right: var(--spacing-md); /* Slightly smaller distance from right */
-    width: 40px; /* Smaller size for mobile */
-    height: 40px; /* Smaller size for mobile */
-    font-size: 1rem; /* Smaller arrow icon */
-  }
+    .back-to-top {
+        bottom: var(--spacing-md);
+        /* Slightly smaller distance from bottom */
+        right: var(--spacing-md);
+        /* Slightly smaller distance from right */
+        width: 40px;
+        /* Smaller size for mobile */
+        height: 40px;
+        /* Smaller size for mobile */
+        font-size: 1rem;
+        /* Smaller arrow icon */
+    }
 }
 
 @media (max-width: 480px) {
-  .back-to-top {
-    bottom: var(--spacing-sm); /* Even smaller distance for very small screens */
-    right: var(--spacing-sm); /* Even smaller distance for very small screens */
-    width: 36px; /* Very small size for tiny screens */
-    height: 36px; /* Very small size for tiny screens */
-    font-size: 0.9rem; /* Very small arrow icon */
-  }
+    .back-to-top {
+        bottom: var(--spacing-sm);
+        /* Even smaller distance for very small screens */
+        right: var(--spacing-sm);
+        /* Even smaller distance for very small screens */
+        width: 36px;
+        /* Very small size for tiny screens */
+        height: 36px;
+        /* Very small size for tiny screens */
+        font-size: 0.9rem;
+        /* Very small arrow icon */
+    }
+}
+/* Auth Container */
+.auth-container {
+    max-width: 450px; /* Slightly wider for better form layout */
+    width: 100%; /* Ensure it takes full width up to max-width */
+    padding: var(--spacing-xl); /* Increased padding inside the container */
+    background-color: var(--card-background-color);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-medium); /* Using a slightly stronger shadow */
+    box-sizing: border-box; /* Include padding in element's total width and height */
 }
 
+/* Auth Form */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md); /* Space between form elements */
+    margin-bottom: var(--spacing-lg); /* Space before the switch paragraph */
+}
+
+label {
+    display: block; /* Ensures label takes its own line */
+    margin-bottom: var(--spacing-xs); /* Small space between label and input */
+    font-weight: bold;
+    color: var(--text-dark-gray);
+}
+
+input {
+    width: 100%; /* Make input fill the available width */
+    padding: var(--spacing-sm); /* Standardized padding */
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-sm);
+    font-size: 1rem; /* Ensure readable font size */
+    box-sizing: border-box; /* Include padding in element's total width and height */
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus {
+    outline: none; /* Remove default outline */
+    border-color: var(--color-primary-light); /* Highlight border on focus */
+    box-shadow: 0 0 0 3px var(--button-focus-ring-color); /* Soft glow on focus */
+}
+/* Auth Button */
+.auth-btn {
+    padding: var(--spacing-md) var(--spacing-lg); /* More generous padding for button */
+    background-color: var(--button-main-color);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 1.1rem; /* Slightly larger text for buttons */
+    font-weight: bold;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.auth-btn:hover {
+    background-color: var(--button-hover-color);
+    transform: translateY(-2px); /* Subtle lift effect on hover */
+}
+
+.auth-btn:active {
+    background-color: var(--button-active-color);
+    transform: translateY(0); /* Reset lift on active */
+}
+
+.auth-btn:focus {
+    outline: 2px solid var(--button-focus-ring-color);
+    outline-offset: 3px; /* Offset the focus ring */
+}
+
+/* Auth Switch (for "Already have an account?" link) */
+.auth-switch {
+    text-align: center;
+    margin-top: var(--spacing-lg); /* Space above the paragraph */
+    color: var(--text-medium-gray);
+}
+
+.auth-link {
+    color: var(--color-primary); /* Use a primary color for the link */
+    text-decoration: none; /* No underline by default */
+    font-weight: bold;
+    transition: color var(--transition-fast);
+}
+
+.auth-link:hover {
+    color: var(--color-primary-dark); /* Darker shade on hover */
+    text-decoration: underline; /* Underline on hover for better UX */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .auth-container {
+        margin: var(--spacing-lg) auto; /* Adjust margin for smaller screens */
+        padding: var(--spacing-lg);
+        box-shadow: none; /* Remove shadow on very small screens for a cleaner look */
+        border-radius: 0; /* No border-radius on very small screens */
+    }
+    body {
+        padding: 0; /* Remove body padding on small screens */
+        align-items: flex-start; /* Align to top on small screens to prevent overflow */
+    }
+}
+/* Container */
+.auth-layout {
+  background: linear-gradient(135deg, #8a2be2, #ff69b4);
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+              0 10px 10px rgba(0,0,0,0.22);
+  position: relative;
+  overflow: hidden;
+  width: 900px;
+  max-width: 100%;
+  min-height: 550px;
+  margin: auto;
+  display: flex;
+}
+
+/* Panel Base */
+.auth-panel {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: all 0.6s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-panel-login {
+  left: 0;
+  z-index: 2;
+}
+
+.auth-panel-signup {
+  left: 0;
+  opacity: 0;
+  z-index: 1;
+}
+
+.auth-layout.auth-shift-panel .auth-panel-login {
+  transform: translateX(100%);
+}
+
+.auth-layout.auth-shift-panel .auth-panel-signup {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+/* Form Structure */
+.auth-panel form {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 50px;
+  padding-top: 5rem; /* 👈 Pushes the form down */
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.auth-panel form h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Input with Icon */
+.auth-input {
+  position: relative;
+  width: 100%;
+  margin: 12px 0;
+}
+
+.auth-input input {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 14px 45px 14px 15px;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 1rem;
+}
+
+.auth-input svg {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 1.2rem;
+}
+
+/* Buttons */
+.auth-panel form button {
+  border-radius: 25px;
+  border: none;
+  background-color: #8a2be2;
+  color: white;
+  padding: 12px 45px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background 0.3s ease;
+}
+
+.auth-panel form button:hover {
+  background-color: #7a1fd8;
+}
+
+/* Forgot Password */
+.auth-forgot {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.8rem;
+  text-decoration: none;
+}
+
+.auth-forgot:hover {
+  text-decoration: underline;
+}
+
+/* Overlay Container */
+.auth-overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 100;
+  transition: transform 0.6s ease-in-out;
+}
+
+.auth-layout.auth-shift-panel .auth-overlay-container {
+  transform: translateX(-100%);
+}
+
+/* Overlay */
+.auth-overlay {
+  background: linear-gradient(135deg, #ff69b4, #8a2be2);
+  color: #fff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  display: flex;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.auth-layout.auth-shift-panel .auth-overlay {
+  transform: translateX(50%);
+}
+
+/* Overlay Panels */
+.auth-overlay-panel {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+}
+
+.auth-overlay-panel h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.auth-overlay-panel p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* Left & Right Specific */
+.auth-overlay-left {
+  transform: translateX(-20%);
+}
+
+.auth-layout.auth-shift-panel .auth-overlay-left {
+  transform: translateX(0);
+}
+
+.auth-overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.auth-layout.auth-shift-panel .auth-overlay-right {
+  transform: translateX(20%);
+}
+
+/* Ghost Button */
+.auth-btn-secondary {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  padding: 12px 45px;
+  border-radius: 25px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.auth-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
