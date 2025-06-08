@@ -26,8 +26,8 @@ const Navbar = () => {
 
                 {/* Right: Auth Links */}
                 <div className="atb flex">
-                    <Link to='/signup'><span>Sign Up</span></Link>
-                    <Link to='/login'><span>Log In</span></Link>
+                    <Link to='/loginsignup'><span>Sign Up</span></Link>
+                    <Link to='/loginsignup'><span>Log In</span></Link>
                 </div>
             </div>
 
