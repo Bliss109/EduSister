@@ -1,0 +1,11 @@
+{"users": [
+{
+  "localId": "tAUmi8JoKjSkkW2QiCbQna3cTcb2",
+  "email": "kristina.kemoi@strathmore.edu",
+  "emailVerified": false,
+  "passwordHash": "8gDJg7GsdxYJ9eKDahm8F0QObJDFtp36TZBTgKJeLZb56ImnsCymFj8JKOX80jZsqkOlwqJWKAgGbJLXUaSQag==",
+  "salt": "P5jWDlWSkoH2AQ==",
+  "createdAt": "1749564051924",
+  "disabled": false,
+  "providerUserInfo": []
+}]}
