@@ -13,7 +13,11 @@ import { db } from '../firebase/firebase';
 import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { getFriendlyFirebaseError } from '../utils/firebaseErrors';
 
-const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_BASE_URL || 'http://localhost:5001/api';
+const defaultUserProfile = {
+  name: "",
+  email: "",
+  roles: ['student']
+};
 
 const LoginSignup = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -46,35 +50,19 @@ const LoginSignup = () => {
     try {
       const userCred = await doCreateUserWithEmailAndPassword(email, password);
       const user = userCred.user;
-      const idToken = await user.getIdToken();
 
-      // call backend to store user profile
-      const response = await fetch(`${API_BASE_URL}/signup`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`
-        },
-        body: JSON.stringify({ fullName })
-      });
-
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message);
-
-      // Store extra defaults in client Firestore if needed
       await setDoc(doc(db, "users", user.uid), {
         ...defaultUserProfile,
         uid: user.uid,
         name: fullName,
         email: user.email,
-        roles: ['student'],
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
 
+      console.log(`✅ Firestore user created: ${user.uid}`);
       navigate("/dashboard");
     } catch (err) {
-      console.error('Signup error:', err);
       setError(getFriendlyFirebaseError(err.code || err.message));
     }
   };
@@ -85,24 +73,17 @@ const LoginSignup = () => {
     try {
       const userCred = await doSignInWithEmailAndPassword(email, password);
       const user = userCred.user;
-      const idToken = await user.getIdToken();
 
-      const response = await fetch(`${API_BASE_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`
-        },
-        body: JSON.stringify({ idToken })
-      });
+      const userRef = doc(db, "users", user.uid);
+      const userSnap = await getDoc(userRef);
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message);
+      if (!userSnap.exists()) {
+        console.warn(`⚠️ No userData found for ${user.uid}`);
+      }
 
       navigate("/dashboard");
     } catch (err) {
-      console.error('Login error:', err);
-      setError(getFriendlyFirebaseError(err.code || err.message));
+      setError(getFriendlyFirebaseError(err.code));
     }
   };
 
@@ -111,37 +92,25 @@ const LoginSignup = () => {
     try {
       const userCred = await doSignInWithGoogle();
       const user = userCred.user;
-      const idToken = await user.getIdToken();
 
-      // Check if user doc exists
       const userRef = doc(db, "users", user.uid);
       const snap = await getDoc(userRef);
+
       if (!snap.exists()) {
         await setDoc(userRef, {
           ...defaultUserProfile,
           uid: user.uid,
           name: user.displayName || "Google User",
           email: user.email,
-          roles: ['student'],
           createdAt: serverTimestamp(),
           updatedAt: serverTimestamp()
         });
+        console.log(`✅ Google user profile created for: ${user.uid}`);
       }
-
-      // Send to backend for login session creation
-      await fetch(`${API_BASE_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${idToken}`
-        },
-        body: JSON.stringify({ idToken })
-      });
 
       navigate("/dashboard");
     } catch (err) {
-      console.error('Google sign-in error:', err);
-      setError(getFriendlyFirebaseError(err.code || err.message));
+      setError(getFriendlyFirebaseError(err.code));
     }
   };
 
@@ -153,62 +122,114 @@ const LoginSignup = () => {
           <h1>Create Account</h1>
 
           <div className="auth-input">
-            <input type="text" placeholder="Full Name" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
+            <input
+              type="text"
+              autoComplete="name"
+              placeholder="Full Name"
+              required
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
             <FaUserAlt />
           </div>
 
           <div className="auth-input">
-            <input type="email" placeholder="Email Address" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input
+              type="email"
+              autoComplete="email"
+              placeholder="Email Address"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <FaEnvelope />
           </div>
 
           <div className="auth-input">
-            <input type={showPassword ? 'text' : 'password'} placeholder="Create Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input
+              type={showPassword ? 'text' : 'password'}
+              autoComplete="new-password"
+              placeholder="Create Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <RiLockPasswordLine />
-            <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
+            <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
 
           <div className="auth-input">
-            <input type={showConfirmPassword ? 'text' : 'password'} placeholder="Confirm Password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-            <span className="toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>{showConfirmPassword ? <FaEyeSlash /> : <FaEye />}</span>
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              autoComplete="new-password"
+              placeholder="Confirm Password"
+              required
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <span className="toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
 
           {error && <p className="auth-error">{error}</p>}
 
           <div className="auth-button-group">
             <button type="submit" className="auth-btn">Sign Up</button>
-            <button type="button" className="google-btn" onClick={handleGoogleSignIn}>Sign up with Google</button>
+            <button type="button" className="google-btn" onClick={handleGoogleSignIn}>
+              Sign up with Google
+            </button>
           </div>
         </form>
       </div>
 
-      {/* Log In */}
+      {/* Login */}
       <div className="auth-panel auth-panel-login">
         <form onSubmit={handleLogin}>
           <h1>Sign In</h1>
 
           <div className="auth-input">
-            <input type="email" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input
+              type="email"
+              autoComplete="email"
+              placeholder="Email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <GrUserFemale />
           </div>
 
           <div className="auth-input">
-            <input type={showLoginPassword ? 'text' : 'password'} placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-            <span className="toggle-password" onClick={() => setShowLoginPassword(!showLoginPassword)}>{showLoginPassword ? <FaEyeSlash /> : <FaEye />}</span>
+            <input
+              type={showLoginPassword ? 'text' : 'password'}
+              autoComplete="current-password"
+              placeholder="Password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span className="toggle-password" onClick={() => setShowLoginPassword(!showLoginPassword)}>
+              {showLoginPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
           </div>
 
           {error && <p className="auth-error">{error}</p>}
 
           <div className="auth-button-group">
             <button type="submit">Log In</button>
-            <button type="button" className="google-btn" onClick={handleGoogleSignIn}>Sign in with Google</button>
+            <button type="button" className="google-btn" onClick={handleGoogleSignIn}>
+              Sign in with Google
+            </button>
           </div>
 
           <Link to="#" className="auth-forgot">Forgot your password?</Link>
         </form>
       </div>
 
-      {/* Overlay Panel */}
+      {/* Overlay */}
       <div className="auth-overlay-container">
         <div className="auth-overlay">
           <div className="auth-overlay-panel auth-overlay-left">

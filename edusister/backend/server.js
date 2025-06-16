@@ -2,125 +2,42 @@ require('dotenv').config();
 const express = require('express');
 const admin = require('firebase-admin');
 const cors = require('cors');
-
 const app = express();
+
 const PORT = process.env.PORT || 5001;
+
+// 🟢 Load service account key (from .env path)
 const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH);
 
-console.log('FIREBASE_SERVICE_ACCOUNT_KEY_PATH:', process.env.FIREBASE_SERVICE_ACCOUNT_KEY_PATH);
-
+// 🟢 Init Firebase Admin SDK
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
 
-const auth = admin.auth();
 const db = admin.firestore();
+const auth = admin.auth();
 
+// 🟢 Middleware
+app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    credentials: true,
-    optionsSuccessStatus: 204 
+  origin: '*', // 🛡️ Change this in production to allow only certain origins
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
 }));
 
-app.use(express.json());
-
-/**
- * PATCHED SIGNUP ROUTE
- * - Verifies the frontend-generated ID token
- * - Stores user profile (email + fullName) in Firestore
- */
-app.post('/api/signup', async (req, res) => {
-    const idToken = req.headers.authorization?.split('Bearer ')[1];
-    const { fullName } = req.body;
-
-    if (!idToken || !fullName) {
-        return res.status(400).json({ error: 'ID token and full name are required.' });
-    }
-
-    try {
-        const decodedToken = await auth.verifyIdToken(idToken);
-        const uid = decodedToken.uid;
-        const email = decodedToken.email;
-
-        await db.collection('users').doc(uid).set({
-            email,
-            fullName,
-            createdAt: admin.firestore.FieldValue.serverTimestamp(),
-        });
-
-        console.log(`✅ User registered: ${uid}`);
-        return res.status(201).json({ 
-            uid,
-            email,
-            fullName,
-            message: 'User created successfully in Firestore.'
-        });
-
-    } catch (error) {
-        console.error('❌ Error in /signup:', error);
-        return res.status(500).json({ message: 'Signup failed.', error: error.message });
-    }
+// ✅ Root route
+app.get('/', (req, res) => {
+  res.send('🚀 EduSister Admin Backend is running.');
 });
 
-/**
- * PATCHED LOGIN ROUTE
- * - Verifies ID token
- * - Returns user profile from Firestore
- */
-app.post('/api/login', async (req, res) => {
-    const idToken = req.headers.authorization?.split('Bearer ')[1];
-
-    if (!idToken) {
-        return res.status(400).json({ error: 'ID token is required.' });
-    }
-
-    try {
-        const decodedToken = await auth.verifyIdToken(idToken);
-        const uid = decodedToken.uid;
-        const email = decodedToken.email;
-
-        const userDoc = await db.collection('users').doc(uid).get();
-        const userData = userDoc.exists ? userDoc.data() : null;
-
-        console.log(`✅ Login successful for: ${uid}`);
-        return res.status(200).json({
-            uid,
-            email,
-            fullName: userData?.fullName || decodedToken.name || null,
-            message: 'Login verified successfully.'
-        });
-
-    } catch (error) {
-        console.error('❌ Error in /login:', error);
-        return res.status(401).json({ message: 'Invalid ID token.', error: error.message });
-    }
+// 🧪 Example admin-only route (not used by frontend)
+app.get('/admin/ping', async (req, res) => {
+  res.json({ message: 'Pong 🧠 from admin backend', time: new Date().toISOString() });
 });
 
-/**
- * LOGOUT ROUTE — REVOKE REFRESH TOKENS
- */
-app.post('/api/logout', async (req, res) => {
-    const idToken = req.body.idToken;
+// 🔒 Example: Secure route placeholder for future admin auth
+// app.use('/admin', verifyAdminMiddleware, adminRoutes);
 
-    if (!idToken) {
-        return res.status(400).json({ error: 'ID token is required.' });
-    }
-
-    try {
-        const decodedToken = await auth.verifyIdToken(idToken);
-        const uid = decodedToken.uid;
-
-        await auth.revokeRefreshTokens(uid);
-        console.log(`✅ Revoked refresh tokens for: ${uid}`);
-        return res.status(200).json({ message: 'Logout successful.' });
-
-    } catch (error) {
-        console.error('❌ Error in /logout:', error);
-        return res.status(500).json({ message: `Logout failed: ${error.message}` });
-    }
-});
-
+// ✅ Start the server
 app.listen(PORT, () => {
-    console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`🟢 Server listening at: http://localhost:${PORT}`);
 });

@@ -6,6 +6,8 @@ import Home from './pages/Home';
 import LoginSignup from './pages/LoginSignup'
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from '../ProtectedRoute';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const location = useLocation();
@@ -32,6 +34,7 @@ const App = () => {
           }
         />
       </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 };
