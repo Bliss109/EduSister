@@ -1,288 +1,214 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { GrUserFemale } from "react-icons/gr";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { FaEnvelope, FaUserAlt } from "react-icons/fa";
-import {auth, db} from '../firebase';
-import { signOut } from 'firebase/auth';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
-import { useEffect } from 'react';
+import { FaEnvelope, FaUserAlt, FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAuth } from '../context/authContext';
+import {
+  doCreateUserWithEmailAndPassword,
+  doSignInWithEmailAndPassword,
+  doSignInWithGoogle
+} from '../firebase/auth';
+import { db } from '../firebase/firebase';
+import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
+import { getFriendlyFirebaseError } from '../utils/firebaseErrors';
 
 const API_BASE_URL = import.meta.env.VITE_REACT_APP_API_BASE_URL || 'http://localhost:5001/api';
 
 const LoginSignup = () => {
-  const [currentUser, setCurrentUser] = useState(null);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { currentUser, loading } = useAuth();
 
-  const [loginFormData, setLoginFormData] = useState({email: '', password: ''});
-  const [loginError, setLoginError] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const [signupFormData, setSignupFormData] = useState({fullName: '', email: '', password: '', confirmPassword: ''});
-  const [signupError, setSignupError] = useState('');
-  const [signupSuccess, setSignupSuccess] = useState('');
-  
-  const usersRef = collection(db, 'users');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) {
-        setCurrentUser(user);
-        // Optionally, fetch user info or set up app-specific session here
-      } else {
-        setCurrentUser(null);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
-
-  // Handle Logout
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      // Optionally, call backend to revoke refresh tokens
-      const idToken = await auth.currentUser?.getIdToken();
-      if (idToken) {
-        await fetch(`${API_BASE_URL}/logout`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idToken }),
-        });
-      }
-    } catch (error) {
-      console.error('Error during logout:', error);
+    if (!loading && currentUser) {
+      navigate('/dashboard');
     }
-  };
+  }, [currentUser, loading, navigate]);
 
-  const handleLoginChange = (e) => {
-    const {name, value} = e.target;
-    setLoginFormData({...loginFormData, [name]: value});
-  };
-
-  const handleLoginSubmit = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    console.log('Login form submitted:');
-    console.log('Atempting to login with email:', loginFormData.email);
-    setLoginError('');
-    setLoginSuccess('');
-
-    try{
-    const userCredential = await signInWithEmailAndPassword(
-      auth, loginFormData.email, loginFormData.password);
-    const user = userCredential.user;
-    const idToken = await user.getIdToken();
-    const response = await fetch(`${API_BASE_URL}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${idToken}`,
-      },
-      body: JSON.stringify({ idToken }),
-    });
-    
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Login failed');
-    }
-    // await addDoc(usersRef, {
-    //   email: user.email,
-    //   uid: user.uid,
-    //   loginTime: new Date(), });
-    
-    console.log('User logged in:', user);
-    setLoginSuccess('Login successful!');
-    // future ref: add navigation
-    }
-    catch (error) {
-      console.error('Login error:', error);
-      if(error.code){
-        switch (error.code) {
-          case 'auth/user-not-found':
-            setLoginError('No user found with this email.');
-            break;
-          case 'auth/wrong-password':
-            setLoginError('Incorrect password. Please try again.');
-            break;
-          case 'auth/invalid-email':
-            setLoginError('Invalid email format. Please enter a valid email.');
-            break;
-          case 'auth/network-request-failed':
-            setLoginError('Network error. Please check your internet connection.');
-            break;
-          case 'auth/too-many-requests':
-            setLoginError('Too many login attempts. Please try again later.');
-            break;
-          case 'FirebaseError':
-            setLoginError('Database permissiondenied.');
-            break;
-          default:
-            setLoginError(`Login failed: ${error.message}`);
-            break;
-        }
-      }
-      else{
-        setLoginError(`Login failed: ${error.message}`);
-      }
-    }
-  };
-
-  const handleSignupChange = (e) => {
-    const {name, value} = e.target;
-    setSignupFormData({...signupFormData, [name]: value});
-  };
-
-  const handleSignupSubmit = async (e) => {
-    e.preventDefault();
-    console.log('Signup form submitted:');
-    console.log('Attempting to sign up with email:', signupFormData.email);
-    setSignupError('');
-    setSignupSuccess(''); 
-
-    if (signupFormData.password !== signupFormData.confirmPassword) {
-      setSignupError('Passwords do not match.');
-      return;
+    setError('');
+    if (password !== confirmPassword) {
+      return setError("Passwords do not match");
     }
 
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth, signupFormData.email, signupFormData.password);
-      const user = userCredential.user;
+      const userCred = await doCreateUserWithEmailAndPassword(email, password);
+      const user = userCred.user;
+      const idToken = await user.getIdToken();
 
-      await addDoc(usersRef, {
-        fullName: signupFormData.fullName,
-        email: user.email,
-        uid: user.uid,
-        signupTime: new Date(),
-      });
-   
+      // call backend to store user profile
       const response = await fetch(`${API_BASE_URL}/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${idToken}`
         },
-        body: JSON.stringify({
-          email: signupFormData.email,
-          password: signupFormData.password,
-          fullName: signupFormData.fullName,
-        })
+        body: JSON.stringify({ fullName })
       });
+
       const data = await response.json();
+      if (!response.ok) throw new Error(data.message);
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Signup failed');
+      // Store extra defaults in client Firestore if needed
+      await setDoc(doc(db, "users", user.uid), {
+        ...defaultUserProfile,
+        uid: user.uid,
+        name: fullName,
+        email: user.email,
+        roles: ['student'],
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+
+      navigate("/dashboard");
+    } catch (err) {
+      console.error('Signup error:', err);
+      setError(getFriendlyFirebaseError(err.code || err.message));
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+      const userCred = await doSignInWithEmailAndPassword(email, password);
+      const user = userCred.user;
+      const idToken = await user.getIdToken();
+
+      const response = await fetch(`${API_BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${idToken}`
+        },
+        body: JSON.stringify({ idToken })
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message);
+
+      navigate("/dashboard");
+    } catch (err) {
+      console.error('Login error:', err);
+      setError(getFriendlyFirebaseError(err.code || err.message));
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setError('');
+    try {
+      const userCred = await doSignInWithGoogle();
+      const user = userCred.user;
+      const idToken = await user.getIdToken();
+
+      // Check if user doc exists
+      const userRef = doc(db, "users", user.uid);
+      const snap = await getDoc(userRef);
+      if (!snap.exists()) {
+        await setDoc(userRef, {
+          ...defaultUserProfile,
+          uid: user.uid,
+          name: user.displayName || "Google User",
+          email: user.email,
+          roles: ['student'],
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
+        });
       }
 
-      console.log('User signed up:', user);
-      console.log('Signup backend response:', data);
-      setSignupSuccess('Signup successful! You can now log in.');
-      setSignupFormData({fullName: '', email: '', password: '', confirmPassword: ''});
-      setIsSignUp(false); 
-    } 
-    catch (error) {
-      console.error('Signup error:', error);
-      if(error.code){
-        switch (error.code) {
-          case 'auth/email-already-in-use':
-            setSignupError('This email is already registered.');
-            break;
-          case 'auth/invalid-email':
-            setSignupError('Invalid email format. Please enter a valid email.');
-            break;
-          case 'auth/weak-password':
-            setSignupError('Password should be at least 6 characters long.');
-            break;
-          case 'auth/network-request-failed':
-            setSignupError('Network error. Please check your internet connection.');
-            break;
-          case 'DatabaseError':
-            setSignupError('Database permission denied.');
-            break;
-          default:
-            setSignupError(`Signup failed: ${error.message}`);
-            break;
-        }
-      }
-      else{
-        setSignupError(`Signup failed: ${error.message}`);
-      }
+      // Send to backend for login session creation
+      await fetch(`${API_BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${idToken}`
+        },
+        body: JSON.stringify({ idToken })
+      });
+
+      navigate("/dashboard");
+    } catch (err) {
+      console.error('Google sign-in error:', err);
+      setError(getFriendlyFirebaseError(err.code || err.message));
     }
   };
 
   return (
     <div className={`auth-layout ${isSignUp ? 'auth-shift-panel' : ''}`}>
-      {currentUser ? (
-        <div className="auth-panel auth-panel-login" style={{ zIndex: 2, position: 'relative' }}> 
-        <div style={{ textAlign: 'center', padding: '200px'}}>
-          <h1>Welcome!</h1>
-          <p className="user-display-text" style={{ fontSize: '1.2em', marginBottom: '20px'}}>
-            {currentUser.displayName ? `Welcome, ${currentUser.displayName}!` : `Welcome, ${currentUser.email}!`}
-          </p>
-          <button className="auth-btn-secondary" onClick={handleLogout} style={{ width: 'auto', padding: '10px 30px' }}>
-            Log Out
-          </button>
-        </div>
-      </div>
-      ) : (
-        <>
-          {/* Sign Up Form */}
+      {/* Sign Up */}
       <div className="auth-panel auth-panel-signup">
-        <form onSubmit={handleSignupSubmit}>
+        <form onSubmit={handleSignup}>
           <h1>Create Account</h1>
 
           <div className="auth-input">
-            <input type="text" placeholder="Full Name" name="fullName" value={signupFormData.fullName} onChange={handleSignupChange} required />
+            <input type="text" placeholder="Full Name" required value={fullName} onChange={(e) => setFullName(e.target.value)} />
             <FaUserAlt />
           </div>
 
           <div className="auth-input">
-            <input type="email" placeholder="Email Address" name="email" value={signupFormData.email} onChange={handleSignupChange} required />
+            <input type="email" placeholder="Email Address" required value={email} onChange={(e) => setEmail(e.target.value)} />
             <FaEnvelope />
           </div>
 
           <div className="auth-input">
-            <input type="password" placeholder="Create Password" name="password" value={signupFormData.password} onChange={handleSignupChange}required />
+            <input type={showPassword ? 'text' : 'password'} placeholder="Create Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
             <RiLockPasswordLine />
+            <span className="toggle-password" onClick={() => setShowPassword(!showPassword)}>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
           </div>
 
           <div className="auth-input">
-            <input type="password" placeholder="Confirm Password" name="confirmPassword" value={signupFormData.confirmPassword} onChange={handleSignupChange}required />
-            <RiLockPasswordLine />
+            <input type={showConfirmPassword ? 'text' : 'password'} placeholder="Confirm Password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+            <span className="toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>{showConfirmPassword ? <FaEyeSlash /> : <FaEye />}</span>
           </div>
 
-          <button type="submit">Sign Up</button>
-          {signupError && <p className="auth-error">{signupError}</p>}
-          {signupSuccess && <p className="auth-success">{signupSuccess}</p>}
+          {error && <p className="auth-error">{error}</p>}
+
+          <div className="auth-button-group">
+            <button type="submit" className="auth-btn">Sign Up</button>
+            <button type="button" className="google-btn" onClick={handleGoogleSignIn}>Sign up with Google</button>
+          </div>
         </form>
       </div>
 
-          {/* Login Form */}
+      {/* Log In */}
       <div className="auth-panel auth-panel-login">
-        <form onSubmit={handleLoginSubmit}>
+        <form onSubmit={handleLogin}>
           <h1>Sign In</h1>
 
           <div className="auth-input">
-            <input type="email" placeholder="Email Address" name="email" value={loginFormData.email} onChange={handleLoginChange} required />
+            <input type="email" placeholder="Email" required value={email} onChange={(e) => setEmail(e.target.value)} />
             <GrUserFemale />
           </div>
 
           <div className="auth-input">
-            <input type="password" placeholder="Password" name="password" value={loginFormData.password} onChange={handleLoginChange} required />
-            <RiLockPasswordLine />
+            <input type={showLoginPassword ? 'text' : 'password'} placeholder="Password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+            <span className="toggle-password" onClick={() => setShowLoginPassword(!showLoginPassword)}>{showLoginPassword ? <FaEyeSlash /> : <FaEye />}</span>
+          </div>
+
+          {error && <p className="auth-error">{error}</p>}
+
+          <div className="auth-button-group">
+            <button type="submit">Log In</button>
+            <button type="button" className="google-btn" onClick={handleGoogleSignIn}>Sign in with Google</button>
           </div>
 
           <Link to="#" className="auth-forgot">Forgot your password?</Link>
-
-          <button type="submit">Log In</button>
-          {loginError && <p className="auth-error">{loginError}</p>}
-          {loginSuccess && <p className="auth-success">{loginSuccess}</p>}
         </form>
       </div>
-        </> 
-      )}
 
-      {/* Overlay */}
+      {/* Overlay Panel */}
       <div className="auth-overlay-container">
         <div className="auth-overlay">
           <div className="auth-overlay-panel auth-overlay-left">

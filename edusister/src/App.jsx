@@ -4,19 +4,33 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import LoginSignup from './pages/LoginSignup'
-
+import Dashboard from './pages/Dashboard';
+import ProtectedRoute from '../ProtectedRoute';
 
 const App = () => {
   const location = useLocation();
-  const hideNavbar = location.pathname === '/loginsignup' || location.pathname === '/loginsignup';
+  const path = location.pathname.toLowerCase();
+  const hideNavbar = path === '/loginsignup';
 
   return (
     <>
-       {!hideNavbar && <Navbar />}
+      {!hideNavbar && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path='/loginsignup' element={<LoginSignup />} /> 
-        
+
+        {/* Public route */}
+        <Route path="/loginsignup" element={<LoginSignup />} />
+
+        {/* Protected route */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
