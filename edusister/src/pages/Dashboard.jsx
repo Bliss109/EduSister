@@ -1,11 +1,16 @@
-import React from 'react'
+// src/pages/Dashboard.jsx
+import React from 'react';
+
 
 const Dashboard = () => {
   return (
-    <div>
-      Testing
+    <div className="main-section">
+       Testing unit
+      <div className="mood-peer-wrapper">
+     
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

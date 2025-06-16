@@ -1,18 +1,25 @@
-// App.jsx
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
-import LoginSignup from './pages/LoginSignup'
+import LoginSignup from './pages/LoginSignup';
 import Dashboard from './pages/Dashboard';
-import ProtectedRoute from '../ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute'
+import StudentLayout from './layouts/StudentLayout';
 import { ToastContainer } from 'react-toastify';
+import { useAuth } from './context/authContext';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const location = useLocation();
-  const path = location.pathname.toLowerCase();
-  const hideNavbar = path === '/loginsignup';
+  const { loading } = useAuth();
+
+  // ✅ Explicitly hide navbar on login/signup and dashboard
+  const hideNavbar = ['/loginsignup', '/dashboard', '/profile', '/dashboard/journals'].includes(location.pathname);
+
+  if (loading){
+    return <div className="loading-screen">Loading EduSister...</div>
+  }
 
   return (
     <>
@@ -20,21 +27,23 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
-
-        {/* Public route */}
         <Route path="/loginsignup" element={<LoginSignup />} />
 
-        {/* Protected route */}
+
+        {/* Dashboard w/ Nested Routes */}
         <Route
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <Dashboard />
+              <StudentLayout />
             </ProtectedRoute>
           }
-        />
+        >
+          <Route index element={<Dashboard />} />
+        </Route>
       </Routes>
-      <ToastContainer position="top-right" autoClose={3000} />
+
+      <ToastContainer />
     </>
   );
 };
