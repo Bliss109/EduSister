@@ -60,6 +60,8 @@
     /* For primary descriptions */
     --text-light-gray: #718096;
     /* For secondary/italic text */
+    --text-light: rgba(0, 0, 0, 0.6);
+  --heading-color: rgba(0, 0, 0, 0.8);
 
     /* Shadows */
     --shadow-soft: 0 4px 10px rgba(0, 0, 0, 0.08);
@@ -111,6 +113,12 @@
     /* Slightly darker light gray for links */
     --color-footer-link-hover: var(--color-secondary);
     /* Pink for link hover */
+    --glass-bg: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+     --color-girl-pink: #ff99cc;
+  --color-soft-lavender: #f3e8ff;
+  --color-muted-purple: #d6bbfb;
+  --color-feminine-purple: #b866e3;
+  --card-glow: 0 0 12px rgba(214, 187, 251, 0.4);
 }
 
 //Default styling
@@ -194,7 +202,7 @@ h2 {
 }
 
 .main-content {
-    padding-top: 250px;
+    padding-top: 230px;
 
     @media (max-width: 768px) {
         padding-top: 500px;
@@ -290,7 +298,6 @@ h2 {
     transform: scale(1.1);
     /* Subtle scale effect */
 }
-
 .navBarOne .middleLinks {
     display: flex;
     gap: var(--spacing-xl);
@@ -805,7 +812,6 @@ h2 {
         transform: translateY(0);
     }
 }
-
 /* Responsive Adjustments for Option 1 */
 @media screen and (max-width: 768px) {
     .header {
@@ -1116,8 +1122,7 @@ h2 {
     .support .infoDiv .textDiv .singleInfo p {
         font-size: 0.9rem;
     }
-
-    .support .infoDiv .articleDiv {
+ .support .infoDiv .articleDiv {
         padding: var(--spacing-lg) var(--spacing-md);
         /* Adjust padding for mobile */
         border-left: none;
@@ -1146,7 +1151,6 @@ h2 {
         font-size: 0.8rem;
     }
 }
-
 @media screen and (max-width: 480px) {
     .support .titleDiv h2 {
         font-size: 1.6rem;
@@ -1972,6 +1976,16 @@ h2 {
         font-size: 1.1rem;
     }
 }
+.toggle-password {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: var(--text-light-gray);
+}
+
 
 /* Core Footer Styling */
 .footer {
@@ -2001,7 +2015,6 @@ h2 {
     margin-bottom: var(--spacing-xs);
     /* Minimal space between wave and content */
 }
-
 /* Main Content Container - Mobile First */
 .footer-container {
     max-width: 100%;
@@ -2425,107 +2438,7 @@ h2 {
         /* Very small arrow icon */
     }
 }
-/* Auth Container */
-.auth-container {
-    max-width: 450px; /* Slightly wider for better form layout */
-    width: 100%; /* Ensure it takes full width up to max-width */
-    padding: var(--spacing-xl); /* Increased padding inside the container */
-    background-color: var(--card-background-color);
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-medium); /* Using a slightly stronger shadow */
-    box-sizing: border-box; /* Include padding in element's total width and height */
-}
 
-/* Auth Form */
-.auth-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md); /* Space between form elements */
-    margin-bottom: var(--spacing-lg); /* Space before the switch paragraph */
-}
-
-label {
-    display: block; /* Ensures label takes its own line */
-    margin-bottom: var(--spacing-xs); /* Small space between label and input */
-    font-weight: bold;
-    color: var(--text-dark-gray);
-}
-
-input {
-    width: 100%; /* Make input fill the available width */
-    padding: var(--spacing-sm); /* Standardized padding */
-    border: 1px solid #ccc;
-    border-radius: var(--border-radius-sm);
-    font-size: 1rem; /* Ensure readable font size */
-    box-sizing: border-box; /* Include padding in element's total width and height */
-    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-input:focus {
-    outline: none; /* Remove default outline */
-    border-color: var(--color-primary-light); /* Highlight border on focus */
-    box-shadow: 0 0 0 3px var(--button-focus-ring-color); /* Soft glow on focus */
-}
-/* Auth Button */
-.auth-btn {
-    padding: var(--spacing-md) var(--spacing-lg); /* More generous padding for button */
-    background-color: var(--button-main-color);
-    color: var(--color-white);
-    border: none;
-    border-radius: var(--border-radius-sm);
-    cursor: pointer;
-    font-size: 1.1rem; /* Slightly larger text for buttons */
-    font-weight: bold;
-    transition: background-color var(--transition-fast), transform var(--transition-fast);
-}
-
-.auth-btn:hover {
-    background-color: var(--button-hover-color);
-    transform: translateY(-2px); /* Subtle lift effect on hover */
-}
-
-.auth-btn:active {
-    background-color: var(--button-active-color);
-    transform: translateY(0); /* Reset lift on active */
-}
-
-.auth-btn:focus {
-    outline: 2px solid var(--button-focus-ring-color);
-    outline-offset: 3px; /* Offset the focus ring */
-}
-
-/* Auth Switch (for "Already have an account?" link) */
-.auth-switch {
-    text-align: center;
-    margin-top: var(--spacing-lg); /* Space above the paragraph */
-    color: var(--text-medium-gray);
-}
-
-.auth-link {
-    color: var(--color-primary); /* Use a primary color for the link */
-    text-decoration: none; /* No underline by default */
-    font-weight: bold;
-    transition: color var(--transition-fast);
-}
-
-.auth-link:hover {
-    color: var(--color-primary-dark); /* Darker shade on hover */
-    text-decoration: underline; /* Underline on hover for better UX */
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .auth-container {
-        margin: var(--spacing-lg) auto; /* Adjust margin for smaller screens */
-        padding: var(--spacing-lg);
-        box-shadow: none; /* Remove shadow on very small screens for a cleaner look */
-        border-radius: 0; /* No border-radius on very small screens */
-    }
-    body {
-        padding: 0; /* Remove body padding on small screens */
-        align-items: flex-start; /* Align to top on small screens to prevent overflow */
-    }
-}
 /* Auth Container */
 .auth-container {
     max-width: 450px;
@@ -2748,7 +2661,6 @@ input:focus {
     width: 100%;
     font-size: 1rem;
 }
-
 .auth-input svg {
     position: absolute;
     right: 15px;
@@ -3226,6 +3138,7 @@ input:focus {
   padding-right: var(--spacing-lg); /* Add right padding for responsiveness */
   padding-bottom: var(--spacing-xxl); /* Ensure ample bottom padding */
 }
+
 /* --- Student Stats Grid (Existing, but including for context) --- */
 .student-stats-grid {
   display: grid;
@@ -3775,6 +3688,433 @@ input:focus {
   font-size: 0.8rem;
   color: var(--text-light-gray);
 }
+/* ========== 🧠 Hero Section (journaling landing page) ========== */
+
+.journaling-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem 8%;
+  background: white;
+  border-radius: 2rem;
+  box-shadow: var(--shadow-lg);
+  gap: 3rem;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.journaling-hero__content {
+  max-width: 580px;
+  flex: 1;
+}
+
+.journaling-hero__title {
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--primary-heading-color);
+  margin-bottom: 1.2rem;
+}
+
+.journaling-hero__title .highlight {
+  color: var(--color-secondary);
+  font-weight: 800;
+}
+
+.journaling-hero__subtitle {
+  font-size: 1.3rem;
+  color: var(--text-medium-gray);
+  line-height: 1.8;
+  margin-bottom: 2.2rem;
+}
+
+.journaling-hero__cta {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: var(--border-radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--transition-fast), transform 0.2s ease;
+  box-shadow: var(--shadow-md);
+  display: inline-block;
+}
+
+.journaling-hero__cta:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+.journaling-hero__image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.journaling-hero__image img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-lg);
+}
+
+/* ========== 📱 Responsive ========== */
+@media (max-width: 768px) {
+  .journaling-hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 4rem 5%;
+  }
+
+  .journaling-hero__title {
+    font-size: 2.4rem;
+  }
+
+  .journaling-hero__subtitle {
+    font-size: 1.1rem;
+  }
+
+  .journaling-hero__image img {
+    max-width: 300px;
+  }
+}
+.steps-section {
+  padding: var(--spacing-xxl) 8%; /* Consistent padding with other sections */
+  text-align: center;
+  background-color: var(--section-background-color); /* Using your soft lavender background */
+  margin: var(--spacing-xxl) auto; /* Center section and provide spacing */
+  max-width: 1600px; /* Limit max width for consistency */
+}
+
+.steps-heading {
+  font-size: 2.8rem; /* Slightly larger heading for prominence */
+  font-weight: 700;
+  color: var(--primary-heading-color); /* Consistent heading color */
+  margin-bottom: var(--spacing-xxl); /* More space below heading before grid */
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.steps-grid {
+  display: flex;
+  gap: var(--spacing-xl); /* Consistent gap between cards */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start; /* Align cards to the top if they have different heights */
+}
+
+.step-card {
+  width: 300px; /* Slightly wider cards for better content display */
+  background: var(--card-background-color); /* White card background */
+  border-radius: var(--border-radius-lg); /* Consistent large border radius */
+  padding: var(--spacing-xl); /* Generous padding inside cards */
+  text-align: center;
+  box-shadow: var(--shadow-md); /* Consistent card shadow */
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal); /* Smoother transition */
+  display: flex; /* Use flexbox for internal alignment */
+  flex-direction: column;
+  align-items: center; /* Center content horizontally within card */
+  /* min-height: 280px; */ /* Optional: if you want all cards to be same height */
+}
+
+.step-card:hover {
+  transform: translateY(-8px); /* More pronounced lift on hover */
+  box-shadow: var(--shadow-lg); /* More prominent shadow on hover */
+}
+
+.step-icon {
+  font-size: 3.2rem; /* Larger icon for impact */
+  color: var(--color-primary); /* Primary purple for icon */
+  margin-bottom: var(--spacing-lg); /* More space below icon */
+}
+
+.step-title {
+  font-size: 1.55rem; /* Slightly larger, bolder title */
+  font-weight: 700; /* More emphasis */
+  color: var(--primary-heading-color); /* Use primary heading color for titles */
+  margin-bottom: var(--spacing-sm); /* Consistent spacing */
+}
+
+.step-desc {
+  font-size: 1.15rem; /* Slightly larger, more readable description */
+  color: var(--text-medium-gray); /* Consistent medium gray for descriptions */
+  line-height: 1.7; /* Good line height for readability */
+  flex-grow: 1; /* Allows description to take available space if min-height is used */
+}
+
+
+/* ========================================================================== */
+/* 📱 Responsive Adjustments for Steps Section        */
+/* ========================================================================== */
+
+@media (max-width: 1024px) { /* Laptops and large tablets */
+  .steps-section {
+    padding: var(--spacing-xxl) 5%; /* Reduce horizontal padding */
+  }
+
+  .steps-heading {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-xl); /* Adjusted spacing */
+  }
+
+  .steps-grid {
+    gap: var(--spacing-lg); /* Slightly reduce gap between cards */
+  }
+
+  .step-card {
+    width: 260px; /* Slightly smaller cards */
+    padding: var(--spacing-lg); /* Reduced internal padding */
+  }
+
+  .step-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .step-title {
+    font-size: 1.4rem;
+  }
+
+  .step-desc {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 768px) { /* Tablet portrait and large phones */
+  .steps-section {
+    padding: var(--spacing-xl) 5%; /* Further reduce padding */
+  }
+
+  .steps-heading {
+    font-size: 2.2rem;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .steps-grid {
+    flex-direction: column; /* Stack cards vertically */
+    align-items: center; /* Center stacked cards */
+    gap: var(--spacing-lg); /* Maintain gap between stacked cards */
+  }
+
+  .step-card {
+    width: 90%; /* Allow cards to take more width, up to 90% */
+    max-width: 320px; /* But don't let them get too wide */
+    padding: var(--spacing-lg);
+  }
+
+  .step-icon {
+    font-size: 2.8rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .step-title {
+    font-size: 1.3rem;
+  }
+
+  .step-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) { /* Small phones */
+  .steps-section {
+    padding: var(--spacing-lg) var(--spacing-md); /* Even tighter padding */
+  }
+
+  .steps-heading {
+    font-size: 1.8rem;
+    margin-bottom: var(--spacing-md);
+  }
+
+  .step-card {
+    width: 100%; /* Full width on smallest screens */
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md); /* Slightly smaller radius */
+  }
+
+  .step-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .step-title {
+    font-size: 1.2rem;
+  }
+
+  .step-desc {
+    font-size: 0.95rem;
+  }
+}
+.quote-inspiration {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xxl); /* Generous gap for spacious layout */
+  padding: var(--spacing-xxl) 8%; /* Consistent section padding */
+  background: linear-gradient(135deg, var(--color-secondary-light), var(--accent-light-color)); /* Soft gradient using your variables */
+  border-radius: var(--border-radius-lg); /* Consistent large border radius */
+  margin: var(--spacing-xxl) auto; /* Center the section and provide top/bottom spacing */
+  max-width: 1600px; /* Limit max width for consistency */
+  box-shadow: var(--shadow-lg); /* Use the larger, softer shadow */
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  overflow: hidden; /* Ensure content stays within rounded corners */
+}
+
+.quote-inspiration__content {
+  flex: 1; /* Allow content to grow and shrink */
+  min-width: 300px; /* Prevent content from becoming too narrow */
+  text-align: left;
+}
+
+.quote-inspiration__quote {
+  font-size: 2.5rem; /* Larger, more impactful quote */
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-primary-dark); /* Deeper primary color for the quote text */
+  margin-bottom: var(--spacing-md); /* Consistent spacing */
+  line-height: 1.3; /* Improved readability */
+  position: relative; /* For decorative quote marks */
+}
+
+/* Adding decorative quote marks */
+.quote-inspiration__quote::before {
+    content: "“";
+    font-size: 4em; /* Large opening quote mark */
+    color: rgba(var(--color-secondary-rgb), 0.3); /* Transparent secondary color */
+    position: absolute;
+    top: -0.5em;
+    left: -0.2em;
+    opacity: 0.8;
+    line-height: 0;
+    z-index: 0;
+}
+
+.quote-inspiration__quote::after {
+    content: "”";
+    font-size: 4em; /* Large closing quote mark */
+    color: rgba(var(--color-secondary-rgb), 0.3);
+    position: absolute;
+    bottom: -0.5em;
+    right: -0.2em;
+    opacity: 0.8;
+    line-height: 0;
+    z-index: 0;
+}
+
+
+.quote-inspiration__author {
+  font-size: 1.3rem; /* Slightly larger author text */
+  color: var(--text-medium-gray); /* Consistent medium gray */
+  margin-top: var(--spacing-md); /* Space below the quote */
+  font-weight: 500;
+  text-align: right; /* Align author to the right */
+  display: block; /* Ensure it takes its own line */
+}
+
+.quote-inspiration__image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 250px; /* Prevent image from shrinking too much */
+}
+
+.quote-inspiration__image img {
+  max-width: 380px; /* Slightly larger image */
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius-md); /* Consistent border radius */
+  box-shadow: var(--shadow-medium); /* Add a subtle shadow */
+  object-fit: contain; /* Ensure the image content is fully visible */
+  transition: transform var(--transition-normal); /* Add transition for hover effect */
+}
+
+.quote-inspiration__image img:hover {
+    transform: scale(1.03); /* Subtle zoom on hover */
+}
+
+
+/* ========================================================================== */
+/* ⌨️ MockPreview Typewriter Section Styling        */
+/* ========================================================================== */
+
+.mock-preview {
+  background-color: var(--section-background-color); /* Using your soft lavender background */
+  padding: var(--spacing-xxl) 8%; /* Consistent section padding */
+  text-align: center;
+  margin: var(--spacing-xxl) auto; /* Center section and provide spacing */
+  max-width: 1600px; /* Limit max width for consistency */
+}
+
+.mock-preview__heading {
+  font-size: 2.8rem; /* Larger, more prominent heading */
+  color: var(--primary-heading-color); /* Consistent heading color */
+  font-weight: 700;
+  margin-bottom: var(--spacing-md); /* Consistent spacing */
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.mock-preview__desc {
+  font-size: 1.25rem; /* Slightly larger, more readable description */
+  color: var(--text-medium-gray); /* Consistent medium gray */
+  line-height: 1.7; /* Good line height */
+  margin-bottom: var(--spacing-xl); /* More space before the typewriter box */
+  max-width: 700px; /* Limit description width for readability */
+  margin-left: auto;
+  margin-right: auto; /* Center the description */
+}
+
+.typewriter-box {
+  background: var(--card-background-color); /* White card background */
+  border-radius: var(--border-radius-md); /* Consistent border radius */
+  padding: var(--spacing-xl) var(--spacing-xxl); /* Generous padding */
+  box-shadow: var(--shadow-lg); /* More prominent shadow for the typewriter box */
+  max-width: 750px; /* Wider for better text flow */
+  margin: 0 auto;
+  border-left: 8px solid var(--color-primary-light); /* Thicker, lighter primary border */
+  text-align: left;
+  position: relative; /* For cursor blink effect */
+  overflow: hidden; /* Hide overflowing text before typewriter animation */
+}
+
+.typewriter-label {
+  font-size: 1.25rem; /* Slightly larger label */
+  font-weight: 600;
+  color: var(--color-primary-dark); /* Deeper primary for the label */
+  margin-bottom: var(--spacing-md); /* Consistent spacing */
+  display: block;
+}
+
+.typewriter-text {
+  font-size: 1.4rem; /* Larger text for readability in typewriter effect */
+  color: var(--text-dark-gray); /* Dark gray for main text */
+  font-family: 'Fira Code', 'Courier New', Courier, monospace; /* Use a monospaced font, Fira Code is popular */
+  min-height: 4rem; /* Ensure enough space for a few lines */
+  white-space: pre-wrap; /* Preserve whitespace and wrap text */
+  word-break: break-word; /* Break long words */
+  overflow: hidden; /* Hide overflow */
+  border-right: 0.1em solid var(--color-secondary); /* Initial cursor */
+  animation: typing 4s steps(60, end) forwards, blink-caret 0.75s step-end infinite; /* Typewriter animation */
+  animation-delay: 0.5s; /* Delay start of typing */
+  width: 0; /* Start with no width for typing effect */
+}
+
+/* Keyframes for typewriter effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* Keyframes for blinking cursor */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--color-secondary); } /* Blink with accent color */
+}
+
 
 /* ========================================================================== */
 /* 📱 Responsive Adjustments for Quote and MockPreview */
@@ -4195,6 +4535,3 @@ input:focus {
     padding: var(--spacing-md);
   }
 }
-
-
-
