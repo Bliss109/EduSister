@@ -6,6 +6,7 @@ import LoginSignup from './pages/LoginSignup';
 import Dashboard from './pages/Dashboard';
 import ProtectedRoute from '../ProtectedRoute'
 import StudentLayout from './layouts/StudentLayout';
+import Journal from './pages/Journal';
 import { ToastContainer } from 'react-toastify';
 import { useAuth } from './context/authContext';
 import 'react-toastify/dist/ReactToastify.css';
@@ -28,8 +29,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/loginsignup" element={<LoginSignup />} />
-
-
+        
         {/* Dashboard w/ Nested Routes */}
         <Route
           path="/dashboard"
@@ -40,6 +40,7 @@ const App = () => {
           }
         >
           <Route index element={<Dashboard />} />
+          <Route path="journals" element={<Journal />} />
         </Route>
       </Routes>
 
