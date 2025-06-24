@@ -5,7 +5,6 @@ import JournalResume from '../components/student/JournalResume';
 import QuoteAndReflection from '../components/student/QuoteAndReflection';
 import MoodTracker from '../components/student/MoodTracker';
 import ActivePeerChats from '../components/student/ActivePeerChats';
-
 const Dashboard = () => {
   return (
     <div className="main-section">

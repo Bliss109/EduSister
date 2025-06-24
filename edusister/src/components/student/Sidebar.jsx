@@ -48,11 +48,11 @@ const Sidebar = () => {
             </NavLink>
           </li>
 
-          <li><NavLink to="/mood-tracker"><span className="sidebar-icon"><FaSmile /></span><span className="sidebar-title">Mood Tracker</span></NavLink></li>
-          <li><NavLink to="/mentorship"><span className="sidebar-icon"><FaUserFriends /></span><span className="sidebar-title">Mentorship</span></NavLink></li>
-          <li><NavLink to="/chats"><span className="sidebar-icon"><FaComments /></span><span className="sidebar-title">Chats</span></NavLink></li>
-          <li><NavLink to="/settings"><span className="sidebar-icon"><FaCogs /></span><span className="sidebar-title">Settings</span></NavLink></li>
-          <li><NavLink to="/help"><span className="sidebar-icon"><FaQuestionCircle /></span><span className="sidebar-title">Help</span></NavLink></li>
+          <li><NavLink to="/dashboard/moodtracker"><span className="sidebar-icon"><FaSmile /></span><span className="sidebar-title">Mood Tracker</span></NavLink></li>
+          <li><NavLink to="/dashboard/mentorship"><span className="sidebar-icon"><FaUserFriends /></span><span className="sidebar-title">Mentorship</span></NavLink></li>
+          <li><NavLink to="/dashboard/chats"><span className="sidebar-icon"><FaComments /></span><span className="sidebar-title">Chats</span></NavLink></li>
+          <li><NavLink to="/dashboard/settings"><span className="sidebar-icon"><FaCogs /></span><span className="sidebar-title">Settings</span></NavLink></li>
+          <li><NavLink to="/dashboard/help"><span className="sidebar-icon"><FaQuestionCircle /></span><span className="sidebar-title">Help</span></NavLink></li>
 
           <li>
             <NavLink to="#" onClick={handleLogout}>

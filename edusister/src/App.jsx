@@ -10,13 +10,16 @@ import Journal from './pages/Journal';
 import { ToastContainer } from 'react-toastify';
 import { useAuth } from './context/authContext';
 import 'react-toastify/dist/ReactToastify.css';
+import MoodTracker from './pages/moodTracker';
+import MentorDashboard from './pages/mentorDashboard';
+
 
 const App = () => {
   const location = useLocation();
   const { loading } = useAuth();
 
   // ✅ Explicitly hide navbar on login/signup and dashboard
-  const hideNavbar = ['/loginsignup', '/dashboard', '/profile', '/dashboard/journals'].includes(location.pathname);
+  const hideNavbar = ['/loginsignup', '/dashboard', '/profile', '/dashboard/journals', '/dashboard/moodtracker'].includes(location.pathname);
 
   if (loading){
     return <div className="loading-screen">Loading EduSister...</div>
@@ -41,6 +44,9 @@ const App = () => {
         >
           <Route index element={<Dashboard />} />
           <Route path="journals" element={<Journal />} />
+          <Route path="moodtracker" element={<MoodTracker/>} />
+          <Route path="mentordashboard" element={<MentorDashboard/>} />
+
         </Route>
       </Routes>
 
