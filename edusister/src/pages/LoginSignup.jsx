@@ -13,11 +13,11 @@ import { db } from '../firebase/firebase';
 import { doc, setDoc, serverTimestamp, getDoc } from 'firebase/firestore';
 import { getFriendlyFirebaseError } from '../utils/firebaseErrors';
 
-const defaultUserProfile = {
-  name: "",
-  email: "",
-  roles: ['student']
-};
+// const defaultUserProfile = {
+//   name: "",
+//   email: "",
+//   roles: ['student']
+// };
 
 const LoginSignup = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -29,15 +29,15 @@ const LoginSignup = () => {
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [selectedRole, setSelectedRole] = useState('student');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [showLoginPassword, setShowLoginPassword] = useState(false);
 
   useEffect(() => {
-    if (!loading && currentUser) {
-      navigate('/dashboard');
-    }
+    // if (!loading && currentUser) {
+    //   navigate('/dashboard');
+    // }
   }, [currentUser, loading, navigate]);
 
   const handleSignup = async (e) => {
@@ -52,22 +52,40 @@ const LoginSignup = () => {
       const user = userCred.user;
 
       await setDoc(doc(db, "users", user.uid), {
-        ...defaultUserProfile,
         uid: user.uid,
         name: fullName,
         email: user.email,
+        roles: [selectedRole],
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
 
-      console.log(`✅ Firestore user created: ${user.uid}`);
-      navigate("/dashboard");
+      // console.log(`✅ Firestore user created: ${user.uid}`);
+      // navigate("/dashboard");
+      // const role = defaultUserProfile.roles[0];
+      if (selectedRole === "mentor") {
+        await setDoc(doc(db, "mentors", user.uid), {
+          name: fullName,
+          email: user.email,
+          bio: "",
+          expertise: "",
+          available: false,
+          createdAt: serverTimestamp(),
+          updatedAt: serverTimestamp()
+        });
+        navigate("/mentordashboard");
+      } else {
+        navigate("/dashboard");
+      }
+
     } catch (err) {
       setError(getFriendlyFirebaseError(err.code || err.message));
     }
   };
 
   const handleLogin = async (e) => {
+    // const userRef = doc(db, "users", currentUser?.uid);
+    // const userSnap = await getDoc(userRef);
     e.preventDefault();
     setError('');
     try {
@@ -80,8 +98,18 @@ const LoginSignup = () => {
       if (!userSnap.exists()) {
         console.warn(`⚠️ No userData found for ${user.uid}`);
       }
+      const userData = userSnap.data();
+      const role = userData.roles?.[0];
 
-      navigate("/dashboard");
+      if(role === "mentor"){
+        navigate("/mentordashboard");
+      }
+      else if (role === "student"){
+        navigate("/dashboard");
+      }
+      else {
+        setError("Invalid user role");
+      }
     } catch (err) {
       setError(getFriendlyFirebaseError(err.code));
     }
@@ -96,19 +124,25 @@ const LoginSignup = () => {
       const userRef = doc(db, "users", user.uid);
       const snap = await getDoc(userRef);
 
-      if (!snap.exists()) {
+      if (!snap.exists()){
         await setDoc(userRef, {
-          ...defaultUserProfile,
-          uid: user.uid,
-          name: user.displayName || "Google User",
-          email: user.email,
-          createdAt: serverTimestamp(),
-          updatedAt: serverTimestamp()
-        });
-        console.log(`✅ Google user profile created for: ${user.uid}`);
+        uid: user.uid,
+        name: user.displayName || "Google User", 
+        email: user.email,
+        roles: ['student'],
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
       }
-
-      navigate("/dashboard");
+      const userSnap = await getDoc(userRef);
+      const userData = userSnap.data();
+      const role = userData.roles?.[0];
+      if(role === "mentor"){
+        navigate("/mentordashboard");
+      }
+      else {
+        navigate("/dashboard");
+      }
     } catch (err) {
       setError(getFriendlyFirebaseError(err.code));
     }
@@ -172,6 +206,18 @@ const LoginSignup = () => {
             <span className="toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
               {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
+          </div>
+          <div className="auth-input">
+            <select
+              value={selectedRole}
+              onChange={(e) =>
+                setSelectedRole(e.target.value)
+              }
+              required
+            >
+              <option value="student">Student</option>
+              <option value="mentor">Mentor</option>
+            </select>
           </div>
 
           {error && <p className="auth-error">{error}</p>}
