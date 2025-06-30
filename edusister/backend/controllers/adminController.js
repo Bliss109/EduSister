@@ -1,5 +1,4 @@
 const { db, admin } = require('../config/firebaseAdmin');
-const { get } = require('../routes/adminRoutes');
 
 // GET /api/admin/users?role=mentor
 const getUsersByRole = async (req, res) => {
@@ -19,7 +18,29 @@ const getUsersByRole = async (req, res) => {
   }
 };
 
+// POST /api/admin/content
+const addMotivationalContent = async (req, res) => {
+  const { title, body, createdBy } = req.body;
+  if (!title || !body || !createdBy) {
+    return res.status(400).json({ message: 'Title, body, and createdBy are required.' });
+  }
+
+  try {
+    const contentRef = await db.collection('motivational_content').add({
+      title,
+      body,
+      createdBy,
+      createdAt: new Date()
+    });
+    res.status(201).json({ message: 'Content added successfully', id: contentRef.id });
+  } catch (err) {
+    console.error('🔥 Error adding content:', err);
+    res.status(500).json({ message: 'Failed to add content', error: err.message });
+  }
+};
+
 
 module.exports ={
-    getUsersByRole
+    getUsersByRole,
+    addMotivationalContent
 };

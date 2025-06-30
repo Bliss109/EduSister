@@ -1,0 +1,5 @@
+### Test GET users by role (e.g., mentor)
+GET http://localhost:5000/api/admin/users?role=mentor HTTP/1.1
+Content-Type: application/json
+
+
