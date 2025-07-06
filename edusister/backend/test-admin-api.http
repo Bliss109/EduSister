@@ -1,5 +1,72 @@
-### Test GET users by role (e.g., mentor)
-GET http://localhost:5000/api/admin/users?role=mentor HTTP/1.1
+### Add Motivational Content (POST)
+POST http://localhost:5001/api/admin/content
 Content-Type: application/json
 
+{
+  "title": "You are worthy 💜",
+  "body": "Rest if you must, but don’t quit.",
+  "createdBy": "Gabriella"
+}
 
+### Get all motivational content
+GET http://localhost:5001/api/admin/content
+
+### Assign a mentor to student
+POST http://localhost:5001/api/admin/assign
+Content-Type: application/json
+
+{
+  "studentId": "E5lASReixsUPPbc9UBl9SL31rmU2",
+  "mentorId": "8dJhrfKp8lcJBdqeMWXrnrvxEdM2",
+  "assignedBy": "5iOmmLOJUdPKopLhwt8ASFX3QAp2"
+}
+
+### Get all assignments
+GET http://localhost:5001/api/admin/assignments
+
+### Notifications
+POST http://localhost:5001/api/admin/notify
+Content-Type: application/json
+
+{
+  "recipientId": "E5lASReixsUPPbc9UBl9SL31rmU2",
+  "message": "You’ve been assigned a mentor!",
+  "createdBy": "5iOmmLOJUdPKopLhwt8ASFX3QAp2"
+}
+
+### Admin Stats
+GET http://localhost:5001/api/admin/stats
+
+### Get unassigned students
+GET http://localhost:5001/api/admin/users?role=student&assigned=false
+
+### Promote user to mentor
+PATCH http://localhost:5001/api/admin/users/USER_ID/roles
+Content-Type: application/json
+
+{
+  "role": "mentor"
+}
+
+### Flag a user
+POST http://localhost:5001/api/admin/users/USER_ID/flag
+Content-Type: application/json
+
+{
+  "flaggedBy": "ADMIN_USER_ID",
+  "reason": "At-risk behavior"
+}
+
+### Save Mood Entry
+POST http://localhost:5001/api/mood
+Content-Type: application/json
+
+{
+  "uid": "v6zMQd74zrgYD8bX5ek3DGrwkFv2",
+  "mood": "Happy",
+  "emoji": "😄",
+  "note": "Today I finally fixed the mood tracker bug!"
+}
+
+### Get all moods for user
+GET http://localhost:5001/api/mood/v6zMQd74zrgYD8bX5ek3DGrwkFv2
